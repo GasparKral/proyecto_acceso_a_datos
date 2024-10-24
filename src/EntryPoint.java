@@ -6,7 +6,7 @@
  * @author David Rámirez, Julian Martín, Juan Colilla, Gaspar Gómez
  * @version 1.0
  */
-public class App {
+public class EntryPoint {
     public static void main(String[] args) throws Exception {
 
     }
