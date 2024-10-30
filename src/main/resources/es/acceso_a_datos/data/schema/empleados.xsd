@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.proyecto.es/proyecto/xml/empleados"
+    xmlns="http://www.proyecto.es/proyecto/xml/empleados"
+>
+    <xs:element name="Empleado">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="numeroEmpleado">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minExclusive value="0" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="apellido">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="3" />
+                            <xs:whiteSpace value="preserve" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="numeroDirector" nillable="true" type="xs:positiveInteger" />
+                <xs:element name="salario">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:decimal">
+                            <xs:minInclusive value="0" />
+                            <xs:fractionDigits value="2" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="oficio" type="xs:string" />
+                <xs:element name="fechaDeAlta">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="\d{2}/\d{2}/\d{4}" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="comision" nillable="true">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:decimal">
+                            <xs:fractionDigits value="2" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="numeroDeDepartamento" type="xs:positiveInteger" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
