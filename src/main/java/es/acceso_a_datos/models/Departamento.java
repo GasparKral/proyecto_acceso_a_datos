@@ -1,5 +1,5 @@
 package es.acceso_a_datos.models;
 
-public class Empleados {
+public class Departamento {
     
 }
