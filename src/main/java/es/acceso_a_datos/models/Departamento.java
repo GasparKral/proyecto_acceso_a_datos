@@ -4,16 +4,14 @@ public class Departamento {
 
     private int id;
     private String nombre;
-    private String poblacion;
     private String localizacion;
 
     public Departamento() {
     }
 
-    public Departamento(int id, String nombre, String poblacion, String localizacion) {
+    public Departamento(int id, String nombre, String localizacion) {
         this.id = id;
         this.nombre = nombre;
-        this.poblacion = poblacion;
         this.localizacion = localizacion;
     }
 
@@ -33,13 +31,6 @@ public class Departamento {
         this.nombre = nombre;
     }
 
-    public String getPoblacion() {
-        return poblacion;
-    }
-
-    public void setPoblacion(String poblacion) {
-        this.poblacion = poblacion;
-    }
 
     public String getLocalizacion() {
         return localizacion;
@@ -54,7 +45,6 @@ public class Departamento {
         return "Departamento:\n" +
                 "id: " + id +
                 "\nnombre='" + nombre +
-                "\npoblacion='" + poblacion+
                 "\nLocalizacion='" + localizacion;
     }
 }
