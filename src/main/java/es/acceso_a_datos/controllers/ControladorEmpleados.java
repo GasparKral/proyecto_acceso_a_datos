@@ -2,16 +2,11 @@ package es.acceso_a_datos.controllers;
 
 import java.util.HashSet;
 import java.util.Date;
-import java.io.File;
-import java.io.IOException;
 
 import es.acceso_a_datos.models.Empleado;
 
 public class ControladorEmpleados extends HashSet<Empleado> {
 
-    public void leerEmpleados(File fichero) throws ClassNotFoundException, IOException {
-        // Implementación futura
-    }
 
     public void modificarEmpleado(int idOriginal, String apellido, int director, double salario, String oficio, Date fecha_alta, Double comision, Integer departamento) {
         Empleado empleadoOriginal = null; // Creamos una objeto empleado para buscar en la coleccion
@@ -35,7 +30,7 @@ public class ControladorEmpleados extends HashSet<Empleado> {
         this.add(empleado); //Añadimos a nuestro HashSet el nuevo empleado
     }
 
-    public void eliminar(int id) {
+    public void eliminarEmpleado(int id) {
 
         Empleado empleadoAEliminar = null; // Creamos una objeto para el empleado a eliminar
 
