@@ -5,7 +5,7 @@ public class Departamento {
     private int id;
     private String nombre;
     private String poblacion;
-    private String Localizacion;
+    private String localizacion;
 
     public Departamento() {
     }
@@ -14,7 +14,7 @@ public class Departamento {
         this.id = id;
         this.nombre = nombre;
         this.poblacion = poblacion;
-        Localizacion = localizacion;
+        this.localizacion = localizacion;
     }
 
     public int getId() {
@@ -42,11 +42,11 @@ public class Departamento {
     }
 
     public String getLocalizacion() {
-        return Localizacion;
+        return localizacion;
     }
 
     public void setLocalizacion(String localizacion) {
-        Localizacion = localizacion;
+        this.localizacion = localizacion;
     }
 
     @Override
@@ -55,6 +55,6 @@ public class Departamento {
                 "id: " + id +
                 "\nnombre='" + nombre +
                 "\npoblacion='" + poblacion+
-                "\nLocalizacion='" + Localizacion;
+                "\nLocalizacion='" + localizacion;
     }
 }
