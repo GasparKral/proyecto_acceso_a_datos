@@ -1,6 +1,12 @@
 package es.acceso_a_datos.controllers;
 
 import java.io.File;
+import java.io.FileInputStream;
+
+import com.thoughtworks.xstream.XStream;
+
+import es.acceso_a_datos.models.Departamento;
+import es.acceso_a_datos.models.Empleado;
 
 public class ControladorPrincipal {
 
@@ -22,8 +28,8 @@ public class ControladorPrincipal {
 
     // #region Atributos
 
-    private ControladorDepartamentos controladorDepartamentos;
-    private ControladorEmpleados controladorEmpleados;
+    private ControladorDepartamentos controladorDepartamentos = new ControladorDepartamentos();
+    private ControladorEmpleados controladorEmpleados = new ControladorEmpleados();
 
     // #endregion
 
@@ -42,11 +48,43 @@ public class ControladorPrincipal {
             throw new IllegalArgumentException("Ruta introducida no es un fichero");
         }
 
-        controladorDepartamentos.leerDepartamentos(ficheroDepartamentos);
-        controladorEmpleados.leerEmpleados(ficheroEmpleados);
-
     }
 
     // #endregion
+
+    public void inicializar(
+            String departamentosXML,
+            String empleadosXML) {
+
+        try {
+
+            XStream xstreamObject = new XStream();
+            xstreamObject.alias("Departamentos", Departamento.class);
+            xstreamObject.alias("Empleados", Empleado.class);
+
+            // Sobre escribir los nombres de los campos
+            xstreamObject.aliasField("Id", Empleado.class, "id");
+            xstreamObject.aliasField("Apellido", Empleado.class, "apellido");
+            xstreamObject.aliasField("Director", Empleado.class, "director");
+            xstreamObject.aliasField("Salario", Empleado.class, "salario");
+            xstreamObject.aliasField("Oficio", Empleado.class, "oficio");
+            xstreamObject.aliasField("Fecha_alta", Empleado.class, "fecha_alta");
+            xstreamObject.aliasField("Departamento", Empleado.class, "departamento");
+
+            xstreamObject.aliasField("Id", Departamento.class, "id");
+            xstreamObject.aliasField("Nombre", Departamento.class, "nombre");
+            xstreamObject.aliasField("Poblacion", Departamento.class, "poblacion");
+            xstreamObject.aliasField("Localizacion", Departamento.class, "localizacion");
+
+            controladorDepartamentos = (ControladorDepartamentos) xstreamObject
+                    .fromXML(new FileInputStream(departamentosXML));
+
+            controladorEmpleados = (ControladorEmpleados) xstreamObject
+                    .fromXML(new FileInputStream(empleadosXML));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
