@@ -6,7 +6,7 @@
     <xs:element name="Empleado">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="numeroEmpleado">
+                <xs:element name="emp_no">
                     <xs:simpleType>
                         <xs:restriction base="xs:integer">
                             <xs:minExclusive value="0" />
@@ -21,7 +21,7 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
-                <xs:element name="numeroDirector" nillable="true" type="xs:positiveInteger" />
+                <xs:element name="dir" nillable="true" type="xs:positiveInteger" />
                 <xs:element name="salario">
                     <xs:simpleType>
                         <xs:restriction base="xs:decimal">
@@ -31,7 +31,7 @@
                     </xs:simpleType>
                 </xs:element>
                 <xs:element name="oficio" type="xs:string" />
-                <xs:element name="fechaDeAlta">
+                <xs:element name="fecha_alt">
                     <xs:simpleType>
                         <xs:restriction base="xs:string">
                             <xs:pattern value="\d{2}/\d{2}/\d{4}" />
@@ -45,7 +45,7 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
-                <xs:element name="numeroDeDepartamento" type="xs:positiveInteger" />
+                <xs:element name="dept_no" type="xs:positiveInteger" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
