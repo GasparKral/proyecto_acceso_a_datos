@@ -5,23 +5,21 @@ import java.util.Date;
 public class Empleado {
 
     private int id;
-    private String nombre;
     private String apellido;
     private Integer director;
     private double salario;
     private String oficio;
     private Date fecha_alta;
-    private int comision;
-    private Departamento departamento;
+    private Double comision;
+    private Integer departamento;
 
     public Empleado() {
     }
 
     
-    public Empleado(int id, String nombre, String apellido, double salario, String oficio, Date fecha_alta,
-            int comision, Departamento departamento) {
+    public Empleado(int id, String apellido, double salario, String oficio, Date fecha_alta,
+            Double comision, Integer departamento) {
         this.id = id;
-        this.nombre = nombre;
         this.apellido = apellido;
         this.director=null;
         this.salario = salario;
@@ -32,9 +30,8 @@ public class Empleado {
     }
 
 
-    public Empleado(int id, String nombre, String apellido, int director, double salario, String oficio, Date fecha_alta, int comision, Departamento departamento) {
+    public Empleado(int id, String apellido, int director, double salario, String oficio, Date fecha_alta, Double comision, Integer departamento) {
         this.id = id;
-        this.nombre = nombre;
         this.apellido = apellido;
         this.director = director;
         this.salario = salario;
@@ -50,14 +47,6 @@ public class Empleado {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getNombre() {
-        return this.nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getApellido() {
@@ -100,19 +89,19 @@ public class Empleado {
         this.fecha_alta = fecha_alta;
     }
 
-    public int getComision() {
+    public Double getComision() {
         return comision;
     }
 
-    public void setComision(int comision) {
+    public void setComision(Double comision) {
         this.comision = comision;
     }
 
-    public Departamento getDepartamento() {
+    public Integer getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(Departamento departamento) {
+    public void setDepartamento(Integer departamento) {
         this.departamento = departamento;
     }
 
@@ -120,7 +109,6 @@ public class Empleado {
     public String toString() {
         return "Empleado:\n" +
                 "id: " + id +
-                "\nNombre: " + nombre +
                 "\nApellido: " + apellido  +
                 "\ndirector: " + director +
                 "\nsalario: " + salario +
