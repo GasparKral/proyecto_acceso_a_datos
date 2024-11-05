@@ -5,9 +5,9 @@ import java.util.Date;
 public class Empleado {
 
     private int id;
-    private String Nombre;
-    private String Apellido;
-    private int director;
+    private String nombre;
+    private String apellido;
+    private Integer director;
     private double salario;
     private String oficio;
     private Date fecha_alta;
@@ -17,10 +17,25 @@ public class Empleado {
     public Empleado() {
     }
 
+    
+    public Empleado(int id, String nombre, String apellido, double salario, String oficio, Date fecha_alta,
+            int comision, Departamento departamento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.director=null;
+        this.salario = salario;
+        this.oficio = oficio;
+        this.fecha_alta = fecha_alta;
+        this.comision = comision;
+        this.departamento = departamento;
+    }
+
+
     public Empleado(int id, String nombre, String apellido, int director, double salario, String oficio, Date fecha_alta, int comision, Departamento departamento) {
         this.id = id;
-        Nombre = nombre;
-        Apellido = apellido;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.director = director;
         this.salario = salario;
         this.oficio = oficio;
@@ -38,19 +53,19 @@ public class Empleado {
     }
 
     public String getNombre() {
-        return Nombre;
+        return this.nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public String getApellido() {
-        return Apellido;
+        return this.apellido;
     }
 
     public void setApellido(String apellido) {
-        Apellido = apellido;
+        this.apellido = apellido;
     }
 
     public int getDirector() {
@@ -105,8 +120,8 @@ public class Empleado {
     public String toString() {
         return "Empleado:\n" +
                 "id: " + id +
-                "\nNombre: " + Nombre  +
-                "\nApellido: " + Apellido  +
+                "\nNombre: " + nombre +
+                "\nApellido: " + apellido  +
                 "\ndirector: " + director +
                 "\nsalario: " + salario +
                 "\noficio: " + oficio  +
