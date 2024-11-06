@@ -1,0 +1,60 @@
+/* Fondo de la aplicación */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #E3F2FD, #BBDEFB); /* Degradado de azul claro */
+    -fx-padding: 20px; /* Espacio alrededor del contenido */
+}
+
+/* Estilos de los botones */
+.button {
+    -fx-background-color: #4CAF50; /* Verde suave */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 3);
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.button:pressed {
+    -fx-background-color: #3e8e41;
+}
+
+/* Colores adicionales para botones */
+.button-primary {
+    -fx-background-color: #2196F3;
+}
+
+.button-primary:hover {
+    -fx-background-color: #1976D2;
+}
+
+.button-secondary {
+    -fx-background-color: #FF9800;
+}
+
+.button-secondary:hover {
+    -fx-background-color: #FB8C00;
+}
+
+.button-danger {
+    -fx-background-color: #F44336;
+}
+
+.button-danger:hover {
+    -fx-background-color: #E53935;
+}
+
+
+/* Campos de entrada */
+.text-field, .password-field {
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: #BBDEFB;
+    -fx-padding: 8px;
+}

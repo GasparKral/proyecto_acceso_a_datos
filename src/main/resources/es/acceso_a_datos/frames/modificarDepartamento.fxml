@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/general.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -25,35 +25,40 @@
          <children>
             <Label text="Introduce los datos del departamento:">
                <font>
-                  <Font size="16.0" />
+                  <Font size="27.0" />
                </font>
             </Label>
          </children>
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <children>
-            <Label text="Introduzca el numero de departamento" />
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-radius: 50;">
+            <Label text="Introduzca el número de departamento" />
+            <TextField fx:id="tFId" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#tFIdOnAction" style="-fx-background-radius: 50;">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
+            <Label fx:id="mensajeID" text="Tienes que escribir un número" textFill="RED">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
             <Label text="Introduzca el nombre de departamento">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-radius: 50;">
+            <TextField fx:id="tFNombre" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#tFNombreOnAction" style="-fx-background-radius: 50;">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Introduzca la localizacion">
+            <Label text="Introduzca la localización">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-radius: 50;">
+            <TextField fx:id="tFLocalizacion" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#tFLocalizacionOnAction" style="-fx-background-radius: 50;">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
@@ -62,7 +67,12 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <children>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-radius: 50;" text="Enviar" />
+            <Button fx:id="modificarDepartamento" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#modificarDepartamentoOnAction" style="-fx-background-radius: 50;" text="Enviar" />
+            <Label fx:id="mensajeCamposVacios" text="No puede haber campos vacios" textFill="RED">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
          </children>
       </VBox>
    </children>
