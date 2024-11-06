@@ -3,7 +3,7 @@ import java.util.HashSet;
 
 import es.acceso_a_datos.models.Departamento;
 
-public class ControladorDepartamentos extends HashSet<Departamento> {
+public class ControladorDepartamentos {
 
     public void modificarDepartamento(int id, String nombre ,String localizacion){
 
@@ -21,5 +21,7 @@ public class ControladorDepartamentos extends HashSet<Departamento> {
         }
 
     }
+
+    HashSet<Departamento> departamentos = new HashSet<>();
 
 }
