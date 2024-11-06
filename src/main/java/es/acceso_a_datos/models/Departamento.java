@@ -2,6 +2,8 @@ package es.acceso_a_datos.models;
 
 public class Departamento {
 
+    //Esta es la clase Departamento en la que declaramos tres variables, 2 constructores, los getter y los setter y un toString
+
     private int id;
     private String nombre;
     private String localizacion;
