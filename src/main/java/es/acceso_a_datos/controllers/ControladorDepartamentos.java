@@ -6,9 +6,11 @@ import java.io.File;
 
 import es.acceso_a_datos.models.Departamento;
 
-public class ControladorDepartamentos extends HashSet<Departamento> {
+public class ControladorDepartamentos {
 
     public void leerDepartamentos(File direcion) {
     }
+
+    HashSet<Departamento> departamentos = new HashSet<>();
 
 }

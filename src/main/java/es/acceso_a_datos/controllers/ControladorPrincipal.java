@@ -1,7 +1,7 @@
 package es.acceso_a_datos.controllers;
 
-import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -35,56 +35,43 @@ public class ControladorPrincipal {
 
     // #region Metodos
 
-    public void leerFicheros(String departamentos, String empleados) {
+    public void inicializar(InputStream departamentosStream, InputStream empleadosStream) {
 
-        File ficheroDepartamentos = new File(departamentos);
-        File ficheroEmpleados = new File(empleados);
+        try {
+            XStream xstreamObject = new XStream();
+            xstreamObject.allowTypes(new Class[] { Empleado.class, Departamento.class, ControladorDepartamentos.class,
+                    ControladorEmpleados.class });
 
-        if (!ficheroDepartamentos.exists() || !ficheroEmpleados.exists()) {
-            throw new IllegalArgumentException("Ficheros no encontrados");
-        }
+            xstreamObject.alias("Departamentos", ControladorDepartamentos.class);
+            xstreamObject.alias("Empleados", ControladorEmpleados.class);
+            xstreamObject.addImplicitCollection(ControladorDepartamentos.class, "departamentos");
+            xstreamObject.addImplicitCollection(ControladorEmpleados.class, "empleados");
 
-        if (!ficheroDepartamentos.isFile() || !ficheroEmpleados.isFile()) {
-            throw new IllegalArgumentException("Ruta introducida no es un fichero");
+            xstreamObject.alias("Departamento", Departamento.class);
+            xstreamObject.alias("Empleado", Empleado.class);
+
+            // Sobre escribir los nombres de los campos
+            xstreamObject.aliasField("emp_no", Empleado.class, "id");
+            xstreamObject.aliasField("apellido", Empleado.class, "apellido");
+            xstreamObject.aliasField("dir", Empleado.class, "director");
+            xstreamObject.aliasField("salario", Empleado.class, "salario");
+            xstreamObject.aliasField("oficio", Empleado.class, "oficio");
+            xstreamObject.aliasField("fecha_alt", Empleado.class, "fecha_alta");
+            xstreamObject.aliasField("comision", Empleado.class, "comision");
+            xstreamObject.aliasField("dept_no", Empleado.class, "departamento");
+
+            xstreamObject.aliasField("dept_no", Departamento.class, "id");
+            xstreamObject.aliasField("dnombre", Departamento.class, "nombre");
+            xstreamObject.aliasField("loc", Departamento.class, "localizacion");
+
+            this.controladorDepartamentos = (ControladorDepartamentos) xstreamObject.fromXML(departamentosStream);
+            this.controladorEmpleados = (ControladorEmpleados) xstreamObject.fromXML(empleadosStream);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
 
     // #endregion
-
-    public void inicializar(
-            String departamentosXML,
-            String empleadosXML) {
-
-        try {
-
-            XStream xstreamObject = new XStream();
-            xstreamObject.alias("Departamentos", Departamento.class);
-            xstreamObject.alias("Empleados", Empleado.class);
-
-            // Sobre escribir los nombres de los campos
-            xstreamObject.aliasField("Id", Empleado.class, "id");
-            xstreamObject.aliasField("Apellido", Empleado.class, "apellido");
-            xstreamObject.aliasField("Director", Empleado.class, "director");
-            xstreamObject.aliasField("Salario", Empleado.class, "salario");
-            xstreamObject.aliasField("Oficio", Empleado.class, "oficio");
-            xstreamObject.aliasField("Fecha_alta", Empleado.class, "fecha_alta");
-            xstreamObject.aliasField("Departamento", Empleado.class, "departamento");
-
-            xstreamObject.aliasField("Id", Departamento.class, "id");
-            xstreamObject.aliasField("Nombre", Departamento.class, "nombre");
-            xstreamObject.aliasField("Poblacion", Departamento.class, "poblacion");
-            xstreamObject.aliasField("Localizacion", Departamento.class, "localizacion");
-
-            controladorDepartamentos = (ControladorDepartamentos) xstreamObject
-                    .fromXML(new FileInputStream(departamentosXML));
-
-            controladorEmpleados = (ControladorEmpleados) xstreamObject
-                    .fromXML(new FileInputStream(empleadosXML));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 }

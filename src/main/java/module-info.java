@@ -4,11 +4,12 @@ module es.acceso_a_datos {
     requires java.base;
     requires xstream;
 
-    opens es.acceso_a_datos to javafx.fxml;
+    opens es.acceso_a_datos to javafx.fxml, xstream;
     opens es.acceso_a_datos.models to javafx.fxml, xstream;
     opens es.acceso_a_datos.models.records to javafx.fxml, xstream;
     opens es.acceso_a_datos.controllers to javafx.fxml, xstream;
     opens es.acceso_a_datos.views to javafx.fxml, xstream;
+    opens es.acceso_a_datos.tests to javafx.fxml, xstream;
 
     exports es.acceso_a_datos.controllers;
     exports es.acceso_a_datos.views;
