@@ -14,6 +14,9 @@ public class TestXStreamLib {
                                                 "/es/acceso_a_datos/data/tests/Departamentos.xml"),
                                 TestXStreamLib.class.getResourceAsStream(
                                                 "/es/acceso_a_datos/data/tests/Empleados.xml"));
+
+                instance.controladorDepartamentos.departamentos.forEach(System.out::println);
+                instance.controladorEmpleados.empleados.forEach(System.out::println);
         }
 
 }

@@ -7,7 +7,7 @@ import es.acceso_a_datos.models.Empleado;
 
 public class ControladorEmpleados {
 
-    private HashSet<Empleado> empleados = new HashSet<>();
+    public HashSet<Empleado> empleados = new HashSet<>();
 
     public void modificarEmpleado(int idOriginal, String apellido, int director, double salario, String oficio,
             Date fecha_alta, Double comision, Integer departamento) {
@@ -16,7 +16,8 @@ public class ControladorEmpleados {
                 departamento); // Creamos al empleado que reemplazará al empleado original
         for (Empleado e : this.empleados) { // Recorremos todas la colleccion
             if (e.getId() == idOriginal) { // Comprobamos que el id que nos han pasado coincida con el de algun empleado
-                empleadoOriginal = e; // En caso de que asi sea asignamos el empleado a nuestro objeto creado anteriormente
+                empleadoOriginal = e; // En caso de que asi sea asignamos el empleado a nuestro objeto creado
+                                      // anteriormente
                 break;
             }
         }
@@ -41,7 +42,8 @@ public class ControladorEmpleados {
 
         for (Empleado e : this.empleados) { // Recorremos todas la colleccion
             if (e.getId() == id) { // Comprobamos que el id que nos han pasado coincida con el de algun empleado
-                empleadoAEliminar = e; // En caso de que asi sea asignamos el empleado a nuestro objeto creado anteriormente
+                empleadoAEliminar = e; // En caso de que asi sea asignamos el empleado a nuestro objeto creado
+                                       // anteriormente
                 break;
             }
         }

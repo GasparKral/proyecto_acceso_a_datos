@@ -6,7 +6,7 @@ import es.acceso_a_datos.models.Departamento;
 
 public class ControladorDepartamentos {
 
-    private HashSet<Departamento> departamentos = new HashSet<>();
+    public HashSet<Departamento> departamentos = new HashSet<>();
 
     public void modificarDepartamento(int id, String nombre, String localizacion) {
 
