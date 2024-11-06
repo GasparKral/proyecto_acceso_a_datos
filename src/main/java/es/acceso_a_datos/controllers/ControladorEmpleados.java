@@ -31,18 +31,7 @@ public class ControladorEmpleados {
     public void crearEmpleado(String apellido, int director, double salario, String oficio, Date fecha_alta,
             Double comision, Integer departamento) {
         int id = this.empleados.size() + 1; //
-        Empleado empleado = new Empleado(id, apellido, director, salario, oficio, fecha_alta, comision, departamento); // Creamos
-                                                                                                                       // el
-                                                                                                                       // nuevo
-                                                                                                                       // objeto
-                                                                                                                       // empleado
-                                                                                                                       // que
-                                                                                                                       // se
-                                                                                                                       // va
-                                                                                                                       // añadir
-                                                                                                                       // a
-                                                                                                                       // la
-                                                                                                                       // coleccion
+        Empleado empleado = new Empleado(id, apellido, director, salario, oficio, fecha_alta, comision, departamento); // Creamos el nuevo objeto empleado que se va añadir a la coleccion
         this.empleados.add(empleado); // Añadimos a nuestro HashSet el nuevo empleado
     }
 
