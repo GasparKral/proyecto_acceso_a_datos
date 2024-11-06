@@ -32,17 +32,6 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <children>
-            <Label text="Introduzca el número de departamento" />
-            <TextField fx:id="tFId" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#tFIdOnAction" style="-fx-background-radius: 50;">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </TextField>
-            <Label fx:id="mensajeID" text="Tienes que escribir un número" textFill="RED">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Label>
             <Label text="Introduzca el nombre de departamento">
                <VBox.margin>
                   <Insets top="10.0" />
