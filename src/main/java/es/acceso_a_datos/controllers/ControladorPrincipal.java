@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.SingleValueConverter;
 
 import es.acceso_a_datos.models.Departamento;
 import es.acceso_a_datos.models.Empleado;
@@ -41,6 +42,26 @@ public class ControladorPrincipal {
             XStream xstreamObject = new XStream();
             xstreamObject.allowTypes(new Class[] { Empleado.class, Departamento.class, ControladorDepartamentos.class,
                     ControladorEmpleados.class });
+            xstreamObject.registerConverter(new SingleValueConverter() {
+                @Override
+                public boolean canConvert(Class type) {
+                    return type.equals(Integer.class);
+                }
+
+                @Override
+                public Object fromString(String str) {
+                    if (str == null || str.isEmpty()) {
+                        return null;
+                    }
+                    return Integer.parseInt(str);
+                }
+
+                @Override
+                public String toString(Object obj) {
+                    return obj.toString();
+                }
+            });
+            
 
             xstreamObject.alias("Departamentos", ControladorDepartamentos.class);
             xstreamObject.alias("Empleados", ControladorEmpleados.class);
