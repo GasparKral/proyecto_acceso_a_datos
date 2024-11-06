@@ -16,12 +16,11 @@ public class Empleado {
     public Empleado() {
     }
 
-    
     public Empleado(int id, String apellido, double salario, String oficio, Date fecha_alta,
             Double comision, Integer departamento) {
         this.id = id;
         this.apellido = apellido;
-        this.director=null;
+        this.director = null;
         this.salario = salario;
         this.oficio = oficio;
         this.fecha_alta = fecha_alta;
@@ -29,8 +28,8 @@ public class Empleado {
         this.departamento = departamento;
     }
 
-
-    public Empleado(int id, String apellido, int director, double salario, String oficio, Date fecha_alta, Double comision, Integer departamento) {
+    public Empleado(int id, String apellido, int director, double salario, String oficio, Date fecha_alta,
+            Double comision, Integer departamento) {
         this.id = id;
         this.apellido = apellido;
         this.director = director;
@@ -109,10 +108,10 @@ public class Empleado {
     public String toString() {
         return "Empleado:\n" +
                 "id: " + id +
-                "\nApellido: " + apellido  +
+                "\nApellido: " + apellido +
                 "\ndirector: " + director +
                 "\nsalario: " + salario +
-                "\noficio: " + oficio  +
+                "\noficio: " + oficio +
                 "\nfecha_alta: " + fecha_alta +
                 "\ncomision: " + comision +
                 "\ndepartamento: " + departamento;
