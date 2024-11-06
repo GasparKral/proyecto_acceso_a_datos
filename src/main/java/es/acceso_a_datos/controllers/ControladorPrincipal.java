@@ -46,6 +46,11 @@ public class ControladorPrincipal {
     // #region Atributos
 
     /**
+     * Referencia del objeto XStream para la serializacion.
+     */
+    private XStream objetoXStream = new XStream();
+
+    /**
      * Controlador de departamentos.
      */
     public ControladorDepartamentos controladorDepartamentos = new ControladorDepartamentos();
@@ -68,12 +73,11 @@ public class ControladorPrincipal {
     public void inicializar(InputStream departamentosStream, InputStream empleadosStream) {
 
         try {
-            XStream xstreamObject = new XStream();
-            xstreamObject.allowTypes(new Class[] { Empleado.class, Departamento.class, ControladorDepartamentos.class,
+            objetoXStream.allowTypes(new Class[] { Empleado.class, Departamento.class, ControladorDepartamentos.class,
                     ControladorEmpleados.class });
 
             // Convertidores de tipo
-            xstreamObject.registerConverter(new SingleValueConverter() {
+            objetoXStream.registerConverter(new SingleValueConverter() {
                 @Override
                 public boolean canConvert(Class type) {
                     return type.equals(Integer.class);
@@ -92,7 +96,7 @@ public class ControladorPrincipal {
                     return obj.toString();
                 }
             });
-            xstreamObject.registerConverter(new SingleValueConverter() {
+            objetoXStream.registerConverter(new SingleValueConverter() {
 
                 @Override
                 public boolean canConvert(Class type) {
@@ -112,7 +116,7 @@ public class ControladorPrincipal {
                     return obj.toString();
                 }
             });
-            xstreamObject.registerConverter(new DateConverter() {
+            objetoXStream.registerConverter(new DateConverter() {
 
                 @Override
                 public boolean canConvert(Class type) {
@@ -135,33 +139,33 @@ public class ControladorPrincipal {
             });
 
             // Alias para los nombres de las clases
-            xstreamObject.alias("Departamentos", ControladorDepartamentos.class);
-            xstreamObject.alias("Empleados", ControladorEmpleados.class);
+            objetoXStream.alias("Departamentos", ControladorDepartamentos.class);
+            objetoXStream.alias("Empleados", ControladorEmpleados.class);
 
             // Alias para los nombres de las listas
-            xstreamObject.addImplicitCollection(ControladorDepartamentos.class, "departamentos");
-            xstreamObject.addImplicitCollection(ControladorEmpleados.class, "empleados");
+            objetoXStream.addImplicitCollection(ControladorDepartamentos.class, "departamentos");
+            objetoXStream.addImplicitCollection(ControladorEmpleados.class, "empleados");
 
             // Alias para los nombres de los campos
-            xstreamObject.alias("Departamento", Departamento.class);
-            xstreamObject.alias("Empleado", Empleado.class);
+            objetoXStream.alias("Departamento", Departamento.class);
+            objetoXStream.alias("Empleado", Empleado.class);
 
-            xstreamObject.aliasField("emp_no", Empleado.class, "id");
-            xstreamObject.aliasField("apellido", Empleado.class, "apellido");
-            xstreamObject.aliasField("dir", Empleado.class, "director");
-            xstreamObject.aliasField("salario", Empleado.class, "salario");
-            xstreamObject.aliasField("oficio", Empleado.class, "oficio");
-            xstreamObject.aliasField("fecha_alt", Empleado.class, "fecha_alta");
-            xstreamObject.aliasField("comision", Empleado.class, "comision");
-            xstreamObject.aliasField("dept_no", Empleado.class, "departamento");
+            objetoXStream.aliasField("emp_no", Empleado.class, "id");
+            objetoXStream.aliasField("apellido", Empleado.class, "apellido");
+            objetoXStream.aliasField("dir", Empleado.class, "director");
+            objetoXStream.aliasField("salario", Empleado.class, "salario");
+            objetoXStream.aliasField("oficio", Empleado.class, "oficio");
+            objetoXStream.aliasField("fecha_alt", Empleado.class, "fecha_alta");
+            objetoXStream.aliasField("comision", Empleado.class, "comision");
+            objetoXStream.aliasField("dept_no", Empleado.class, "departamento");
 
-            xstreamObject.aliasField("dept_no", Departamento.class, "id");
-            xstreamObject.aliasField("dnombre", Departamento.class, "nombre");
-            xstreamObject.aliasField("loc", Departamento.class, "localizacion");
+            objetoXStream.aliasField("dept_no", Departamento.class, "id");
+            objetoXStream.aliasField("dnombre", Departamento.class, "nombre");
+            objetoXStream.aliasField("loc", Departamento.class, "localizacion");
 
             // Parsea los archivos XML y los convierte a objetos
-            this.controladorDepartamentos = (ControladorDepartamentos) xstreamObject.fromXML(departamentosStream);
-            this.controladorEmpleados = (ControladorEmpleados) xstreamObject.fromXML(empleadosStream);
+            this.controladorDepartamentos = (ControladorDepartamentos) objetoXStream.fromXML(departamentosStream);
+            this.controladorEmpleados = (ControladorEmpleados) objetoXStream.fromXML(empleadosStream);
         } catch (Exception e) {
             e.printStackTrace();
         }
