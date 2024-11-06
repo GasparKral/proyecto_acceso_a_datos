@@ -27,7 +27,7 @@ public class PuntoEntrada extends Application {
     @Override
     public void start(Stage escenarioInicial) throws IOException {
         escenario = escenarioInicial;
-        escena = new Scene(cargarFXML("principal"), 640, 480);
+        escena = new Scene(cargarFXML("Inicio"), 640, 480);
         escenario.setScene(escena);
         escenario.show();
     }
@@ -50,7 +50,8 @@ public class PuntoEntrada extends Application {
      * @throws IOException si ocurre un error al cargar el archivo FXML.
      */
     private static Parent cargarFXML(String fxml) throws IOException {
-        FXMLLoader cargadorFXML = new FXMLLoader(PuntoEntrada.class.getResource(fxml + ".fxml"));
+
+        FXMLLoader cargadorFXML = new FXMLLoader(PuntoEntrada.class.getResource("frames/" + fxml + ".fxml"));
         return cargadorFXML.load();
     }
 
@@ -63,7 +64,7 @@ public class PuntoEntrada extends Application {
      * @throws IOException si ocurre un error al cargar el archivo FXML.
      */
     public static void cambiarEscenaA(String fxml) throws IOException {
-        FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource(fxml + ".fxml"));
+        FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource("frames/" + fxml + ".fxml"));
         Parent raiz = cargador.load();
         escena.setRoot(raiz);
         escenario.setScene(escena);
@@ -78,7 +79,7 @@ public class PuntoEntrada extends Application {
      * @throws IOException si ocurre un error al cargar el archivo FXML.
      */
     public static void cambiarEscenaA(String fxml, SceneOptions opcionesEscena) throws IOException {
-        FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource(fxml + ".fxml"));
+        FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource("frames/" + fxml + ".fxml"));
         Parent raiz = cargador.load();
 
         int ancho = opcionesEscena.size() != null ? opcionesEscena.size().first() : 640;
@@ -103,7 +104,7 @@ public class PuntoEntrada extends Application {
      * @throws IOException si ocurre un error al cargar el archivo FXML.
      */
     public static void cambiarEscenaA(String fxml, Object controlador) throws IOException {
-        FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource(fxml + ".fxml"));
+        FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource("frames/" + fxml + ".fxml"));
         cargador.setController(controlador);
         Parent raiz = cargador.load();
         escena.setRoot(raiz);
@@ -120,7 +121,7 @@ public class PuntoEntrada extends Application {
      * @throws IOException si ocurre un error al cargar el archivo FXML.
      */
     public static void cambiarEscenaA(String fxml, Object controlador, SceneOptions opcionesEscena) throws IOException {
-        FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource(fxml + ".fxml"));
+        FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource("frames/" + fxml + ".fxml"));
         cargador.setController(controlador);
         Parent raiz = cargador.load();
 
