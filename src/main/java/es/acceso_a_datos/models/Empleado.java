@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Empleado {
 
+    // Esta es la clase Empleado, en la cual tenemos 8 atributos, 3 constructores, de los cuales 1 está vacio, los getter, los setter y un toString
     private int id;
     private String apellido;
     private Integer director;
