@@ -8,7 +8,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import es.acceso_a_datos.models.records.SceneOptions;
+import es.acceso_a_datos.controladores.ControladorPrincipal;
+import es.acceso_a_datos.modelos.records.SceneOptions;
+import es.acceso_a_datos.vistas.controladoresUI.ControladorDeBusquedas;
 
 /**
  * Clase principal del programa que extiende Application de JavaFX.
@@ -21,15 +23,17 @@ import es.acceso_a_datos.models.records.SceneOptions;
  */
 public class PuntoEntrada extends Application {
 
-    private static Stage escenario;
+    public static Stage escenario;
     private static Scene escena;
 
     @Override
     public void start(Stage escenarioInicial) throws IOException {
         escenario = escenarioInicial;
-        escena = new Scene(cargarFXML("Inicio"), 640, 480);
+        escena = new Scene(cargarFXML("BusquedaPorCampos"), 750, 480);
         escenario.setScene(escena);
         escenario.show();
+        escenario.setResizable(false);
+        escenario.setMaximized(true);
     }
 
     /**
@@ -52,6 +56,8 @@ public class PuntoEntrada extends Application {
     private static Parent cargarFXML(String fxml) throws IOException {
 
         FXMLLoader cargadorFXML = new FXMLLoader(PuntoEntrada.class.getResource("frames/" + fxml + ".fxml"));
+        // TODO: ELIMINAR
+        cargadorFXML.setController(new ControladorDeBusquedas());
         return cargadorFXML.load();
     }
 
@@ -145,6 +151,8 @@ public class PuntoEntrada extends Application {
      * @param args argumentos de la línea de comandos.
      */
     public static void main(String[] args) {
+
+        ControladorPrincipal.getInstance().inicializar();
         launch();
     }
 

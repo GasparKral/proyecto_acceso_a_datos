@@ -10,9 +10,9 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.acceso_a_datos.controllers.ControladorPrincipal;
-import es.acceso_a_datos.models.Departamento;
-import es.acceso_a_datos.models.Empleado;
+import es.acceso_a_datos.controladores.ControladorPrincipal;
+import es.acceso_a_datos.modelos.Departamento;
+import es.acceso_a_datos.modelos.Empleado;
 
 public class ControladorPrincipalTest {
 

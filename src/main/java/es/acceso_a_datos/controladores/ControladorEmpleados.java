@@ -1,33 +1,33 @@
-package es.acceso_a_datos.controllers;
+package es.acceso_a_datos.controladores;
 
 import java.util.HashSet;
 import java.util.Date;
 
-import es.acceso_a_datos.models.Empleado;
+import es.acceso_a_datos.modelos.Empleado;
 
 public class ControladorEmpleados {
 
     public HashSet<Empleado> empleados = new HashSet<>();
 
-    public HashSet<Empleado> buscarEmpleado(int id, String apellido, int director, double salario, String oficio,
-    Date fecha_alta, Double comision, Integer departamento){
+    public void buscarEmpleado(int id, String apellido, int director, double salario, String oficio,
+            Date fecha_alta, Double comision, Integer departamento) {
         Empleado empleadoABuscar = null; // Creamos una objeto para el empleado a eliminar
 
         for (Empleado e : this.empleados) { // Recorremos todas la colleccion
             if (e.getId() == id) { // Comprobamos que el id que nos han pasado coincida con el de algun empleado
-                empleadoABuscar = e; // En caso de que asi sea asignamos el empleado a nuestro objeto creado anteriormente
+                empleadoABuscar = e; // En caso de que asi sea asignamos el empleado a nuestro objeto creado
+                                     // anteriormente
                 break;
             }
         }
         if (empleadoABuscar != null) {
-            this.empleados.remove(empleadoAEliminar); // Eliminamos el empleado
+            this.empleados.remove(empleadoABuscar); // Eliminamos el empleado
         }
-        if (id != null) {
+        // if (id != null) {
 
-        }
+        // }
 
     }
-
 
     public void modificarEmpleado(int idOriginal, String apellido, int director, double salario, String oficio,
             Date fecha_alta, Double comision, Integer departamento) {
@@ -36,7 +36,8 @@ public class ControladorEmpleados {
                 departamento); // Creamos al empleado que reemplazará al empleado original
         for (Empleado e : this.empleados) { // Recorremos todas la colleccion
             if (e.getId() == idOriginal) { // Comprobamos que el id que nos han pasado coincida con el de algun empleado
-                empleadoOriginal = e; // En caso de que asi sea asignamos el empleado a nuestro objeto creado anteriormente
+                empleadoOriginal = e; // En caso de que asi sea asignamos el empleado a nuestro objeto creado
+                                      // anteriormente
                 break;
             }
         }
@@ -61,7 +62,8 @@ public class ControladorEmpleados {
 
         for (Empleado e : this.empleados) { // Recorremos todas la colleccion
             if (e.getId() == id) { // Comprobamos que el id que nos han pasado coincida con el de algun empleado
-                empleadoAEliminar = e; // En caso de que asi sea asignamos el empleado a nuestro objeto creado anteriormente
+                empleadoAEliminar = e; // En caso de que asi sea asignamos el empleado a nuestro objeto creado
+                                       // anteriormente
                 break;
             }
         }

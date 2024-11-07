@@ -1,4 +1,4 @@
-package es.acceso_a_datos.controllers;
+package es.acceso_a_datos.controladores;
 
 import java.io.InputStream;
 import java.text.ParseException;
@@ -9,8 +9,8 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.SingleValueConverter;
 import com.thoughtworks.xstream.converters.basic.DateConverter;
 
-import es.acceso_a_datos.models.Departamento;
-import es.acceso_a_datos.models.Empleado;
+import es.acceso_a_datos.modelos.Departamento;
+import es.acceso_a_datos.modelos.Empleado;
 
 /**
  * Clase que representa el controlador principal de la aplicacion.
@@ -44,6 +44,8 @@ public class ControladorPrincipal {
     // #endregion
 
     // #region Atributos
+
+    public boolean editandoEmpeados = false;
 
     /**
      * Referencia del objeto XStream para la serializacion.

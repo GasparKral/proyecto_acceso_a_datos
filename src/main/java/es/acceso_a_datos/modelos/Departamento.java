@@ -1,8 +1,11 @@
-package es.acceso_a_datos.models;
+package es.acceso_a_datos.modelos;
+
+import java.util.List;
 
 public class Departamento {
 
-    //Esta es la clase Departamento en la que declaramos tres variables, 2 constructores, los getter y los setter y un toString
+    // Esta es la clase Departamento en la que declaramos tres variables, 2
+    // constructores, los getter y los setter y un toString
 
     private int id;
     private String nombre;
@@ -33,13 +36,19 @@ public class Departamento {
         this.nombre = nombre;
     }
 
-
     public String getLocalizacion() {
         return localizacion;
     }
 
     public void setLocalizacion(String localizacion) {
         this.localizacion = localizacion;
+    }
+
+    public List<String> getCamposComoStrings() {
+        return List.of(
+                String.valueOf(id),
+                nombre,
+                localizacion);
     }
 
     @Override
