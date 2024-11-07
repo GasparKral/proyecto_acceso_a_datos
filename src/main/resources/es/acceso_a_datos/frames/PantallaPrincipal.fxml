@@ -57,24 +57,15 @@
             </HBox>
          </children>
       </VBox>
-      <VBox GridPane.columnSpan="2" GridPane.rowIndex="3">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="errorLabel" alignment="CENTER" text="Error" textFill="RED" visible="false" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
-               <children>
-                  <Button fx:id="bEmpleado" mnemonicParsing="false" onAction="#bEmpleadoOnAction" style="-fx-background-radius: 50;" text="Empleado" />
-                  <Button fx:id="bDepartamento" alignment="CENTER" mnemonicParsing="false" onAction="#bDepartamentoOnAction" style="-fx-background-radius: 50;" text="Departamento">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
+            <Button fx:id="bEmpleado" mnemonicParsing="false" onAction="#bEmpleadoOnAction" style="-fx-background-radius: 50;" text="Empleado" />
+            <Button fx:id="bDepartamento" alignment="CENTER" mnemonicParsing="false" onAction="#bDepartamentoOnAction" style="-fx-background-radius: 50;" text="Departamento">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </GridPane>
