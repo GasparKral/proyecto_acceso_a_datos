@@ -10,7 +10,6 @@ import java.io.IOException;
 
 import es.acceso_a_datos.controladores.ControladorPrincipal;
 import es.acceso_a_datos.modelos.records.SceneOptions;
-import es.acceso_a_datos.vistas.controladoresUI.ControladorDeBusquedas;
 
 /**
  * Clase principal del programa que extiende Application de JavaFX.
@@ -29,11 +28,9 @@ public class PuntoEntrada extends Application {
     @Override
     public void start(Stage escenarioInicial) throws IOException {
         escenario = escenarioInicial;
-        escena = new Scene(cargarFXML("BusquedaPorCampos"), 750, 480);
+        escena = new Scene(cargarFXML("pantallaPrincipal"), 750, 480);
         escenario.setScene(escena);
         escenario.show();
-        escenario.setResizable(false);
-        escenario.setMaximized(true);
     }
 
     /**
@@ -56,8 +53,6 @@ public class PuntoEntrada extends Application {
     private static Parent cargarFXML(String fxml) throws IOException {
 
         FXMLLoader cargadorFXML = new FXMLLoader(PuntoEntrada.class.getResource("frames/" + fxml + ".fxml"));
-        // TODO: ELIMINAR
-        cargadorFXML.setController(new ControladorDeBusquedas());
         return cargadorFXML.load();
     }
 
@@ -88,16 +83,19 @@ public class PuntoEntrada extends Application {
         FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource("frames/" + fxml + ".fxml"));
         Parent raiz = cargador.load();
 
-        int ancho = opcionesEscena.size() != null ? opcionesEscena.size().first() : 640;
-        int alto = opcionesEscena.size() != null ? opcionesEscena.size().second() : 480;
+        int ancho = opcionesEscena.tamaño() != null ? opcionesEscena.tamaño().first() : 640;
+        int alto = opcionesEscena.tamaño() != null ? opcionesEscena.tamaño().second() : 480;
 
         Scene nuevaEscena = new Scene(raiz, ancho, alto);
         escenario.setScene(nuevaEscena);
 
-        if (opcionesEscena.position() != null) {
-            escenario.setX(opcionesEscena.position().first());
-            escenario.setY(opcionesEscena.position().second());
+        if (opcionesEscena.posicion() != null) {
+            escenario.setX(opcionesEscena.posicion().first());
+            escenario.setY(opcionesEscena.posicion().second());
         }
+
+        escenario.setMaximized(opcionesEscena.maximizado());
+        escenario.setResizable(opcionesEscena.redimensionable());
 
         escenario.show();
     }
@@ -131,16 +129,19 @@ public class PuntoEntrada extends Application {
         cargador.setController(controlador);
         Parent raiz = cargador.load();
 
-        int ancho = opcionesEscena.size() != null ? opcionesEscena.size().first() : 640;
-        int alto = opcionesEscena.size() != null ? opcionesEscena.size().second() : 480;
+        int ancho = opcionesEscena.tamaño() != null ? opcionesEscena.tamaño().first() : 640;
+        int alto = opcionesEscena.tamaño() != null ? opcionesEscena.tamaño().second() : 480;
 
         Scene nuevaEscena = new Scene(raiz, ancho, alto);
         escenario.setScene(nuevaEscena);
 
-        if (opcionesEscena.position() != null) {
-            escenario.setX(opcionesEscena.position().first());
-            escenario.setY(opcionesEscena.position().second());
+        if (opcionesEscena.posicion() != null) {
+            escenario.setX(opcionesEscena.posicion().first());
+            escenario.setY(opcionesEscena.posicion().second());
         }
+
+        escenario.setMaximized(opcionesEscena.maximizado());
+        escenario.setResizable(opcionesEscena.redimensionable());
 
         escenario.show();
     }
@@ -152,7 +153,9 @@ public class PuntoEntrada extends Application {
      */
     public static void main(String[] args) {
 
-        ControladorPrincipal.getInstance().inicializar();
+        ControladorPrincipal.getInstance().inicializar(
+                PuntoEntrada.class.getResourceAsStream("data/xml/Departamentos.xml"),
+                PuntoEntrada.class.getResourceAsStream("data/xml/Empleados.xml"));
         launch();
     }
 
