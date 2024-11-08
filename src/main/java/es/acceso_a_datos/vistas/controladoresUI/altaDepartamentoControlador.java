@@ -1,9 +1,12 @@
 package es.acceso_a_datos.vistas.controladoresUI;
 
+import es.acceso_a_datos.PuntoEntrada;
+import es.acceso_a_datos.controladores.ControladorPrincipal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class altaDepartamentoControlador {
     @FXML
@@ -16,7 +19,24 @@ public class altaDepartamentoControlador {
     }
 
 
-    public void nuevoDepartamentoOnAction(ActionEvent event) {
+    @FXML
+    void guardarDepartamento(MouseEvent event) {
+        if (tFLocalizacion.getText().isEmpty() || tFNombre.getText().isEmpty()) {
+            mensajeCamposVacios.setVisible(true);
+        } else {
+            try {
+                ControladorPrincipal.getInstance().controladorDepartamentos.crearDepartamento(tFNombre.getText(), tFLocalizacion.getText());;
+                mensajeCamposVacios.setVisible(false);
+            } catch (Exception e) {
+                e = new Exception("Ocurrio un error al cargar guardar el departamento.");
+            }
 
+            try {
+                PuntoEntrada.cambiarEscenaA("menu");
+            } catch (Exception e) {
+                e = new Exception("Ocurrio un error al cargar la ventana de menu de departamento.");
+            }
+            
+        }
     }
 }
