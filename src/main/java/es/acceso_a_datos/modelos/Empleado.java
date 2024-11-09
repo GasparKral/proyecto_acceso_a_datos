@@ -57,7 +57,7 @@ public class Empleado {
         this.apellido = apellido;
     }
 
-    public int getDirector() {
+    public Integer getDirector() {
         return director;
     }
 
