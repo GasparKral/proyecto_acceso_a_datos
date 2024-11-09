@@ -32,4 +32,12 @@ public class DatosCacheados implements Serializable {
         return datosCacheados.containsKey(key);
     }
 
+    public void removeDato(String key) {
+        datosCacheados.remove(key);
+    }
+
+    public HashMap<String, Object> getDatosCacheados() {
+        return datosCacheados;
+    }
+
 }
