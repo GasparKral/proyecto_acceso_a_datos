@@ -1,14 +1,17 @@
 package es.acceso_a_datos.controladores;
 
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.ConversionException;
 import com.thoughtworks.xstream.converters.SingleValueConverter;
 import com.thoughtworks.xstream.converters.basic.DateConverter;
 
+import es.acceso_a_datos.modelos.DatosCacheados;
 import es.acceso_a_datos.modelos.Departamento;
 import es.acceso_a_datos.modelos.Empleado;
 
@@ -45,7 +48,10 @@ public class ControladorPrincipal {
 
     // #region Atributos
 
-    public boolean editandoEmpeados = false;
+    /**
+     * Bandera que indica si se estan editando los empleados o no.
+     */
+    private boolean editandoEmpeados = false;
 
     /**
      * Referencia del objeto XStream para la serializacion.
@@ -60,6 +66,11 @@ public class ControladorPrincipal {
      * Controlador de empleados.
      */
     public ControladorEmpleados controladorEmpleados = new ControladorEmpleados();
+
+    /**
+     * Estructura para almacenar los datos cacheados de la aplicacion.
+     */
+    public DatosCacheados datosCacheados = DatosCacheados.getInstance();
 
     // #endregion
 
@@ -172,6 +183,33 @@ public class ControladorPrincipal {
             e.printStackTrace();
         }
 
+    }
+
+    public boolean isEditandoEmpeados() {
+        return editandoEmpeados;
+    }
+
+    public void editarEmpleados() {
+        this.editandoEmpeados = true;
+    }
+
+    public void editarDepartamentos() {
+        this.editandoEmpeados = false;
+    }
+
+    public void guardarXML(String rutaDepartamentos, String rutaEmpleados) {
+        try {
+
+            objetoXStream.omitField(ControladorEmpleados.class, "camposBuscados");
+            objetoXStream.omitField(ControladorDepartamentos.class, "camposBuscados");
+
+            // Serializa los departamentos y empleados
+            objetoXStream.toXML(this.controladorDepartamentos, new FileOutputStream(rutaDepartamentos));
+            objetoXStream.toXML(this.controladorEmpleados, new FileOutputStream(rutaEmpleados));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // #endregion
