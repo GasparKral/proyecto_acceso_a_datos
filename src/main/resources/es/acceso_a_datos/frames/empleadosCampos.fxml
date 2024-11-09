@@ -1,128 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane hgap="20.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.4000244140625" minWidth="10.0" prefWidth="44.400028228759766" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.59997177124023" minWidth="10.0" prefWidth="65.20001220703126" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.79998779296875" minWidth="10.0" prefWidth="60.2" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.79998779296878" minWidth="10.0" prefWidth="68.79999694824215" />
-      <ColumnConstraints />
-      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-  </columnConstraints>
-  <rowConstraints>
-      <RowConstraints maxHeight="332.0000244140625" minHeight="10.0" prefHeight="126.59998707771302" vgrow="SOMETIMES" />
-  </rowConstraints>
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="150.0"
+   stylesheets="@../css/general.css" xmlns="http://javafx.com/javafx/21"
+   xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="es.acceso_a_datos.vistas.controladoresUI.EmpleadosCamposControlador">
    <children>
-      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <HBox maxHeight="-Infinity" prefHeight="28.0" prefWidth="115.0">
          <children>
-            <Label text="ID" />
-            <TextField fx:id="tFId">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></TextField>
+            <Button mnemonicParsing="false" text="&lt;-" />
          </children>
-         <GridPane.margin>
-            <Insets left="5.0" right="5.0" />
-         </GridPane.margin>
-      </VBox>
-      <VBox alignment="CENTER" GridPane.columnIndex="1">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </HBox>
+      <TilePane alignment="CENTER_LEFT" hgap="20.0" maxHeight="1.7976931348623157E308"
+         maxWidth="1.7976931348623157E308" prefColumns="8" prefHeight="223.0" prefRows="1"
+         vgap="20.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label text="Apellido" />
-            <TextField fx:id="tFApellido">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></TextField>
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308"
+               maxWidth="1.7976931348623157E308">
+               <children>
+                  <Label text="ID" />
+                  <TextField fx:id="tFId" onKeyTyped="#campoCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Apellido" />
+                  <TextField fx:id="tFApellido" onInputMethodTextChanged="#campoCambiado"
+                     onKeyTyped="#campoCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Director" />
+                  <TextField fx:id="tFDirector" onInputMethodTextChanged="#campoCambiado"
+                     onKeyTyped="#campoCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Salario" />
+                  <TextField fx:id="tFSalario" onInputMethodTextChanged="#campoCambiado"
+                     onKeyTyped="#campoCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Oficio" />
+                  <TextField fx:id="tFOficio" onInputMethodTextChanged="#campoCambiado"
+                     onKeyTyped="#campoCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Fecha_Alta" />
+                  <DatePicker fx:id="dPFecha" onAction="#dPCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </DatePicker>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Comisión" />
+                  <TextField fx:id="tFComision" onInputMethodTextChanged="#campoCambiado"
+                     onKeyTyped="#campoCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Departamento" />
+                  <TextField fx:id="tFDepartamento" onInputMethodTextChanged="#campoCambiado"
+                     onKeyTyped="#campoCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
          </children>
-         <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin>
-      </VBox>
-      <VBox alignment="CENTER" GridPane.columnIndex="2">
-         <children>
-            <Label text="Director" />
-            <TextField fx:id="tFDirector">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></TextField>
-         </children>
-         <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin>
-      </VBox>
-      <VBox alignment="CENTER" GridPane.columnIndex="3">
-         <children>
-            <Label text="Salario" />
-            <TextField fx:id="tFSalario">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></TextField>
-         </children>
-         <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin>
-      </VBox>
-      <VBox alignment="CENTER" GridPane.columnIndex="4">
-         <children>
-            <Label text="Oficio" />
-            <TextField fx:id="tFOficio">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></TextField>
-         </children>
-         <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin>
-      </VBox>
-      <VBox alignment="CENTER" GridPane.columnIndex="5">
-         <children>
-            <Label text="Fecha_Alta" />
-            <DatePicker fx:id="dPFecha">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </DatePicker>
-         </children>
-         <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin>
-      </VBox>
-      <VBox alignment="CENTER" GridPane.columnIndex="6">
-         <children>
-            <Label text="Comisión" />
-            <TextField fx:id="tFComision">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></TextField>
-         </children>
-         <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin>
-      </VBox>
-      <VBox alignment="CENTER" GridPane.columnIndex="7">
-         <children>
-            <Label text="Departamento" />
-            <TextField fx:id="tFDepartamento">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin></TextField>
-         </children>
-         <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin>
-      </VBox>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </TilePane>
    </children>
-</GridPane>
+</VBox>

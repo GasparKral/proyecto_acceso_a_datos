@@ -3,59 +3,49 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="236.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="324.0" minWidth="10.0" prefWidth="60.79999923706055" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="510.4000007629395" minWidth="0.0" prefWidth="320.000048828125" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.99995040893555" minWidth="0.0" prefWidth="260.99995040893555" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="332.0000244140625" minHeight="10.0" prefHeight="126.59998707771302" vgrow="SOMETIMES" />
-   </rowConstraints>
+<HBox prefHeight="150.0" stylesheets="@../css/general.css" xmlns="http://javafx.com/javafx/21"
+   xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="es.acceso_a_datos.vistas.controladoresUI.DepartamentosCamposControlador">
    <children>
-      <VBox alignment="CENTER" prefHeight="121.0" prefWidth="63.0">
+      <TilePane alignment="CENTER" hgap="50.0" maxHeight="1.7976931348623157E308"
+         maxWidth="1.7976931348623157E308" prefColumns="3" prefHeight="187.0" prefRows="1"
+         prefWidth="703.0" vgap="20.0" HBox.hgrow="ALWAYS">
          <children>
-            <Label text="ID" />
-            <TextField fx:id="tFId">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </TextField>
+            <VBox alignment="CENTER" prefHeight="121.0" prefWidth="63.0">
+               <children>
+                  <Label text="ID" />
+                  <TextField fx:id="tFId" onKeyTyped="#campoCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Nombre" />
+                  <TextField fx:id="tFNombre" onKeyTyped="#campoCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Localización" />
+                  <TextField fx:id="tFLocalizacion" onKeyTyped="#campoCambiado">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
          </children>
-         <GridPane.margin>
-            <Insets left="5.0" right="5.0" />
-         </GridPane.margin>
-      </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-         <children>
-            <Label text="Nombre" />
-            <TextField fx:id="tFNombre">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </TextField>
-         </children>
-         <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin>
-      </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-         <children>
-            <Label text="Localización" />
-            <TextField fx:id="tFLocalizacion">
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </TextField>
-         </children>
-         <GridPane.margin>
-            <Insets right="5.0" />
-         </GridPane.margin>
-      </VBox>
+      </TilePane>
    </children>
-</GridPane>
+</HBox>

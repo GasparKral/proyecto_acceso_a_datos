@@ -1,9 +1,5 @@
 package es.acceso_a_datos.vistas.controladoresUI;
 
-import javafx.scene.input.MouseEvent;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -13,8 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
-public class altaUsuarioControlador {
+public class AltaUsuarioControlador {
 	ZoneId defaultZoneId = ZoneId.systemDefault();
 
 

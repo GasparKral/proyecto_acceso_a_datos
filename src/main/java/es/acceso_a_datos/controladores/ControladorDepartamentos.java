@@ -1,114 +1,99 @@
 package es.acceso_a_datos.controladores;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import es.acceso_a_datos.modelos.Departamento;
+import javafx.beans.property.SimpleMapProperty;
+import javafx.collections.FXCollections;
 
 public class ControladorDepartamentos {
 
     public HashSet<Departamento> departamentos = new HashSet<>();
 
+    // Definición de un enum para los campos de búsqueda, que utiliza métodos de referencia para obtener valores de campos de Departamento.
+    public enum CampoBusqueda {
+        ID(Departamento::getId), NOMBRE(Departamento::getNombre), LOCALIZACION(Departamento::getLocalizacion);
+
+        private final Function<Departamento, ?> getMethod;
+
+        // Constructor del enum que asigna la función de obtención de valor a cada campo.
+        CampoBusqueda(Function<Departamento, ?> getMethod) {
+            this.getMethod = getMethod;
+        }
+
+        // Método que aplica la función de obtención de valor al departamento dado.
+        public Object getCampo(Departamento departamento) {
+            return getMethod.apply(departamento);
+        }
+    }
+
+    public SimpleMapProperty<CampoBusqueda, String> camposBuscados = null;
+
+    // Método que inicializa los campos de búsqueda con valores nulos.
+    public void cargarEnums() {
+        this.camposBuscados = new SimpleMapProperty<>(FXCollections.observableHashMap());
+        for (CampoBusqueda campo : CampoBusqueda.values()) {
+            this.camposBuscados.put(campo, null);
+        }
+    }
+
+    // Método para establecer el valor de un campo de búsqueda específico.
+    public void setValorCampoBuscado(CampoBusqueda campo, String valor) {
+        this.camposBuscados.put(campo, valor);
+    }
+
+    // Método para modificar un departamento existente, lanzando una excepción si no se encuentra.
     public void modificarDepartamento(int id, String nombre, String localizacion) throws Exception {
+        Departamento departamentoInicial = null; // Almacena el departamento a modificar si se encuentra.
+        Departamento departamentoRemplazo = new Departamento(id, nombre, localizacion); // Nuevo departamento con datos actualizados.
 
-        Departamento departamentoInicial = null; // Declaramos un objeto de la clase departamento y lo inicializamos a
-                                                 // null para almacenar mas tarde el departamento a modificar
-        Departamento departamentoRemplazo = new Departamento(id, nombre, localizacion); // Declaramos otro objeto
-                                                                                        // departamento en el que
-                                                                                        // almacenamos los datos
-                                                                                        // actualizados
-
-        // creamos un bucle foreach para buscar el departamento que queremos modificar
+        // Bucle para buscar el departamento a modificar.
         for (Departamento dep : departamentos) {
-            // si el id del departamento coincide con el id pasado por parámetro, se volcará
-            // dicho departamento
-            // en el primer objeto declarado para eliminarlo de la colección
             if (dep.getId() == id) {
                 departamentoInicial = dep;
             }
         }
-        // Si se ha encontrado el departamento, se elimina y se añade el departamento
-        // con los atributos modificados, si no, mostrará una excepción avisando del
-        // error
+
+        // Si se encuentra el departamento, se reemplaza; si no, se lanza una excepción.
         if (departamentoInicial != null) {
             departamentos.remove(departamentoInicial);
             departamentos.add(departamentoRemplazo);
         } else {
             throw new Exception("No se ha podido modificar el departamento");
         }
-
     }
 
+    // Método para crear un nuevo departamento, lanzando una excepción si falla.
     public void crearDepartamento(String nombre, String localizacion) throws Exception {
-        int id = departamentos.size() + 1; // generamos el id para el nuevo departamento a partir del tamaño de la
-                                           // colección
-        Departamento departamento = new Departamento(id, nombre, localizacion); // Creamos el nuevo objeto departamento
-                                                                                // que se va añadir a la coleccion
-        Boolean agregado = departamentos.add(departamento); // Añadimos a nuestro HashSet el nuevo departamento
+        int id = departamentos.size() + 1; // Genera un ID nuevo basado en el tamaño del conjunto actual.
+        Departamento departamento = new Departamento(id, nombre, localizacion); // Crea un nuevo departamento.
+        Boolean agregado = departamentos.add(departamento); // Añade el nuevo departamento al conjunto.
 
-        // Si no se ha agregado correctamente el nuevo departamento se mostrará una
-        // excepción informando del fallo
+        // Si no se agrega correctamente, lanza una excepción.
         if (!agregado) {
             throw new Exception("No se ha podido agregar el departamento");
         }
     }
 
-    public void borrarDepartamento(int id) throws Exception {
-        // Mediante un foreach, recorremos la colección buscando el departamento a
-        // borrar, si es encontrado se elimina, si no se lanzará una excepción
-        for (Departamento dep : departamentos) {
-            if (dep.getId() == id) {
+    // Método para buscar departamentos que coincidan con los campos de búsqueda establecidos.
+    public HashSet<Departamento> buscDepartamentos() {
+        // Crea un mapa de los campos de búsqueda que tienen valores no nulos.
+        HashMap<CampoBusqueda, String> campos = this.camposBuscados.entrySet().stream()
+                .filter(entry -> entry.getValue() != null)
+                .collect(HashMap::new, (map, entry) -> map.put(entry.getKey(), entry.getValue()), HashMap::putAll);
 
-                Boolean eliminado = departamentos.remove(dep);
-                if (!eliminado) {
-                    throw new Exception("No se ha podido realizar el borrado");
-                }
-            }
-        }
-    }
-
-    public Departamento buscarDepartamentoPorId(int id) {
-
-        // Recorremos la colección buscando el departamento por el id pasado por
-        // parámetro, si lo encontamos, se retornará el departamento, sino se retornará
-        // null
-        for (Departamento dep : departamentos) {
-
-            if (dep.getId() == id) {
-                return dep;
-            }
-        }
-
-        return null;
-
-    }
-
-    public Departamento buscarDepartamentoPorNombre(String nombre) {
-
-        // Recorremos la colección buscando el departamento por el nombre pasado por
-        // parámetro, si lo encontamos, se retornará el departamento, sino se retornará
-        // null
-        for (Departamento dep : departamentos) {
-            if (dep.getNombre().equals(nombre)) {
-                return dep;
-            }
-        }
-
-        return null;
-
-    }
-
-    public Departamento buscarDepartamentoPorLocalizacion(String localizacion) {
-
-        // Recorremos la colección buscando el departamento por la localización pasada
-        // por parámetro, si lo encontamos, se retornará el departamento, sino se
-        // retornará null
-        for (Departamento dep : departamentos) {
-            if (dep.getLocalizacion().equals(localizacion)) {
-                return dep;
-            }
-
-        }
-
-        return null;
+        // Filtra y devuelve los departamentos que coinciden con los valores de búsqueda.
+        return new HashSet<Departamento>(this.departamentos.stream()
+                .filter(departamento -> campos.entrySet().stream()
+                        .allMatch(campo -> {
+                            Object valorCampo = campo.getKey().getCampo(departamento);
+                            return valorCampo != null && valorCampo.toString().toLowerCase()
+                                    .contains(campo.getValue().toLowerCase());
+                        }))
+                .collect(Collectors.toSet()));
     }
 
 }

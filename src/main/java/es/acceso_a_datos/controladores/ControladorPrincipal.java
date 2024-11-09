@@ -70,7 +70,7 @@ public class ControladorPrincipal {
     /**
      * Estructura para almacenar los datos cacheados de la aplicacion.
      */
-    public DatosCacheados datosCacheados = DatosCacheados.getInstance();
+    public ControladorDatos controladorDatos = new ControladorDatos();
 
     // #endregion
 

@@ -2,13 +2,12 @@ package es.acceso_a_datos.vistas.controladoresUI;
 
 import es.acceso_a_datos.PuntoEntrada;
 import es.acceso_a_datos.controladores.ControladorPrincipal;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class altaDepartamentoControlador {
+public class AltaDepartamentoControlador {
     @FXML
     Label mensajeCamposVacios;
     @FXML

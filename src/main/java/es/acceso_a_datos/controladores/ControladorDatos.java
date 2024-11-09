@@ -5,7 +5,7 @@ import es.acceso_a_datos.modelos.DatosCacheados;
 public class ControladorDatos {
     // Leer y guardar CSV
 
-    DatosCacheados datosCacheados = DatosCacheados.getInstance();
+    public DatosCacheados datosCacheados = DatosCacheados.getInstance();
 
     public void cargarCsv() {
 

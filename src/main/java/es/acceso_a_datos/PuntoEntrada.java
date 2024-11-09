@@ -1,15 +1,13 @@
 package es.acceso_a_datos;
 
+import java.io.IOException;
+
+import es.acceso_a_datos.modelos.records.SceneOptions;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-
-import es.acceso_a_datos.controladores.ControladorPrincipal;
-import es.acceso_a_datos.modelos.records.SceneOptions;
 
 /**
  * Clase principal del programa que extiende Application de JavaFX.
@@ -153,9 +151,6 @@ public class PuntoEntrada extends Application {
      */
     public static void main(String[] args) {
 
-        ControladorPrincipal.getInstance().inicializar(
-                PuntoEntrada.class.getResourceAsStream("data/xml/Departamentos.xml"),
-                PuntoEntrada.class.getResourceAsStream("data/xml/Empleados.xml"));
         launch();
     }
 
