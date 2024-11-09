@@ -3,24 +3,20 @@ package es.acceso_a_datos.vistas.componentes;
 import java.util.List;
 
 import es.acceso_a_datos.PuntoEntrada;
-import javafx.animation.ScaleTransition;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 public class ResultadosBusqueda extends HBox {
-
-    private boolean editorEstaAbierto = false;
 
     /**
      * Constructor que recibe una lista de campos y los muestra en columnas.
      * 
      * @param campos
      */
-    public ResultadosBusqueda(List<String> campos, Object elemento) {
+    public ResultadosBusqueda(List<String> campos) {
 
         super();
 
@@ -50,28 +46,7 @@ public class ResultadosBusqueda extends HBox {
             aplicarEstilos(newVal.doubleValue());
         });
 
-        // Se crea una animación para desplegar un componente cuando se haga click en
-        // este
-        this.setOnMouseClicked((e) -> {
-
-            EditorDeCampos editor = new EditorDeCampos(elemento);
-            ScaleTransition animacion = new ScaleTransition(Duration.millis(500), editor);
-
-            if (editorEstaAbierto) {
-                animacion.setFromY(1);
-                animacion.setToY(0);
-                editorEstaAbierto = false;
-            } else {
-                animacion.setFromY(0);
-                animacion.setToY(1);
-                editorEstaAbierto = true;
-            }
-
-            animacion.play();
-
-        });
-
-    }
+    };
 
     private void aplicarEstilos(Double ancho) {
         for (Node columna : this.getChildren()) {

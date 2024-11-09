@@ -6,7 +6,12 @@ import es.acceso_a_datos.PuntoEntrada;
 import es.acceso_a_datos.controladores.ControladorPrincipal;
 import es.acceso_a_datos.modelos.Departamento;
 import es.acceso_a_datos.modelos.Empleado;
+import es.acceso_a_datos.vistas.componentes.EditorDeCampos;
 import es.acceso_a_datos.vistas.componentes.ResultadosBusqueda;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 /**
  * Clase que controla la vista de búsqueda de empleados o departamentos.
@@ -21,7 +27,9 @@ import javafx.scene.layout.VBox;
  */
 public class BusquedasControlador {
 
-    private ControladorPrincipal controladorPrincipal = ControladorPrincipal.getInstance();
+    private final double ALTURA_MAXIMA_EDITOR_DE_CAMPOS = 125.0;
+
+    private final ControladorPrincipal controladorPrincipal = ControladorPrincipal.getInstance();
 
     @FXML
     VBox padre;
@@ -33,41 +41,42 @@ public class BusquedasControlador {
     Pane formulario;
 
     @FXML
-    public void initialize() {
+    private void initialize() {
 
         if (controladorPrincipal.isEditandoEmpeados()) {
 
             // Carga los campos para búsqueda de empleados
             try {
-                formulario.getChildren()
-                        .add(new FXMLLoader(PuntoEntrada.class.getResource("frames/empleadosCampos.fxml")).load());
-            } catch (Exception e) {
+                formulario.getChildren().add(
+                        new FXMLLoader(PuntoEntrada.class.getResource("frames/empleadosCampos.fxml")).load());
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
             // Carga las etiquetas de los campos de los empleados
-            cabecera.getChildren().add(new Label("Id"));
-            cabecera.getChildren().add(new Label("Apellido"));
-            cabecera.getChildren().add(new Label("Director"));
-            cabecera.getChildren().add(new Label("Salario"));
-            cabecera.getChildren().add(new Label("Oficio"));
-            cabecera.getChildren().add(new Label("Fecha alta"));
-            cabecera.getChildren().add(new Label("Comision"));
-            cabecera.getChildren().add(new Label("Departamento"));
+            cabecera.getChildren().addAll(
+                    new Label("Id"),
+                    new Label("Apellido"),
+                    new Label("Director"),
+                    new Label("Salario"),
+                    new Label("Oficio"),
+                    new Label("Fecha alta"),
+                    new Label("Comision"),
+                    new Label("Departamento"));
 
             // Carga los todos los empleados por primera vez
             for (Empleado empleado : controladorPrincipal.controladorEmpleados.listarEmpleados()) {
-                padre.getChildren().add(new ResultadosBusqueda(empleado.getCamposComoStrings(), empleado));
+                padre.getChildren().add(crearFilaEmpleado(empleado));
             }
 
             controladorPrincipal.controladorEmpleados.camposBuscados.addListener(
                     (obs, oldVal, newVal) -> {
 
-                        this.padre.getChildren().clear();
+                        padre.getChildren().clear();
 
                         // Carga los resultados de la búsqueda de empleados
                         for (Empleado empleado : controladorPrincipal.controladorEmpleados.buscarEmpleados()) {
-                            padre.getChildren().add(new ResultadosBusqueda(empleado.getCamposComoStrings(), empleado));
+                            padre.getChildren().add(crearFilaEmpleado(empleado));
                         }
                     });
 
@@ -75,33 +84,33 @@ public class BusquedasControlador {
 
             // Carga los campos para búsqueda de departamentos
             try {
-                formulario.getChildren()
-                        .add(new FXMLLoader(PuntoEntrada.class.getResource("frames/departamentosCampos.fxml"))
+                formulario.getChildren().add(
+                        new FXMLLoader(PuntoEntrada.class.getResource("frames/departamentosCampos.fxml"))
                                 .load());
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             // Carga las etiquetas de los campos de los departamentos
-            cabecera.getChildren().add(new Label("Id"));
-            cabecera.getChildren().add(new Label("Nombre"));
-            cabecera.getChildren().add(new Label("Localización"));
+            cabecera.getChildren().addAll(
+                    new Label("Id"),
+                    new Label("Nombre"),
+                    new Label("Localización"));
 
             // Carga los departamentos por primera vez
             for (Departamento departamento : controladorPrincipal.controladorDepartamentos.departamentos) {
-                padre.getChildren().add(new ResultadosBusqueda(departamento.getCamposComoStrings(), departamento));
+                padre.getChildren().add(crearFilaDepartamento(departamento));
             }
 
             controladorPrincipal.controladorDepartamentos.camposBuscados.addListener(
                     (obs, oldVal, newVal) -> {
 
-                        this.padre.getChildren().clear();
+                        padre.getChildren().clear();
 
                         // Carga los resultados de la búsqueda de departamentos
                         for (Departamento departamento : controladorPrincipal.controladorDepartamentos
                                 .buscDepartamentos()) {
-                            padre.getChildren()
-                                    .add(new ResultadosBusqueda(departamento.getCamposComoStrings(), departamento));
+                            padre.getChildren().add(crearFilaDepartamento(departamento));
                         }
                     });
 
@@ -111,7 +120,7 @@ public class BusquedasControlador {
         for (Node label : cabecera.getChildren()) {
             ((Label) label).setStyle("-fx-font-weight: bold;");
             ((Label) label).setTextFill(javafx.scene.paint.Color.valueOf("#fafafa"));
-            ((Label) label).alignmentProperty().setValue(javafx.geometry.Pos.CENTER);
+            ((Label) label).setAlignment(javafx.geometry.Pos.CENTER);
             ((Label) label).setMaxWidth(500);
             ((Label) label).setMinWidth(50);
 
@@ -128,4 +137,75 @@ public class BusquedasControlador {
 
     }
 
+    private VBox crearFilaDepartamento(Departamento departamento) {
+
+        EditorDeCampos editorDeCampos = new EditorDeCampos(departamento);
+
+        VBox fila = new VBox(
+                new ResultadosBusqueda(departamento.getCamposComoStrings()), editorDeCampos);
+
+        fila.setOnMouseClicked(event -> {
+            Timeline timeline = new Timeline();
+            timeline.setCycleCount(Timeline.INDEFINITE);
+
+            // Creamos un KeyFrame para la animación
+            Timeline animacion = new Timeline();
+            animacion.setOnFinished((a) -> {
+                // Cambia el estado del editor cuando la animación termina
+                editorDeCampos.estaAbierto = !editorDeCampos.estaAbierto;
+            });
+
+            // KeyFrame que define la duración, propiedades y valores finales de la
+            // animación
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(300),
+                    new KeyValue(editorDeCampos.opacityProperty(), editorDeCampos.estaAbierto ? 0.0 : 1.0,
+                            Interpolator.EASE_BOTH),
+                    new KeyValue(editorDeCampos.minHeightProperty(),
+                            editorDeCampos.estaAbierto ? 0.0 : ALTURA_MAXIMA_EDITOR_DE_CAMPOS,
+                            Interpolator.EASE_BOTH));
+
+            // Añade el KeyFrame a la animación y comienza la animación
+            animacion.getKeyFrames().add(keyFrame);
+            animacion.play();
+
+        });
+
+        return fila;
+    }
+
+    private VBox crearFilaEmpleado(Empleado empleado) {
+
+        EditorDeCampos editorDeCampos = new EditorDeCampos(empleado);
+
+        VBox fila = new VBox(
+                new ResultadosBusqueda(empleado.getCamposComoStrings()), editorDeCampos);
+
+        fila.setOnMouseClicked(event -> {
+            Timeline timeline = new Timeline();
+            timeline.setCycleCount(Timeline.INDEFINITE);
+
+            // Creamos un KeyFrame para la animación
+            Timeline animacion = new Timeline();
+            animacion.setOnFinished((a) -> {
+                // Cambia el estado del editor cuando la animación termina
+                editorDeCampos.estaAbierto = !editorDeCampos.estaAbierto;
+            });
+
+            // KeyFrame que define la duración, propiedades y valores finales de la
+            // animación
+            KeyFrame keyFrame = new KeyFrame(Duration.millis(300),
+                    new KeyValue(editorDeCampos.opacityProperty(), editorDeCampos.estaAbierto ? 0.0 : 1.0,
+                            Interpolator.EASE_BOTH),
+                    new KeyValue(editorDeCampos.minHeightProperty(),
+                            editorDeCampos.estaAbierto ? 0.0 : ALTURA_MAXIMA_EDITOR_DE_CAMPOS,
+                            Interpolator.EASE_BOTH));
+
+            // Añade el KeyFrame a la animación y comienza la animación
+            animacion.getKeyFrames().add(keyFrame);
+            animacion.play();
+
+        });
+
+        return fila;
+    }
 }

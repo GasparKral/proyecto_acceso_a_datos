@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
-public class departamentosCamposControlador {
+public class DepartamentosCamposControlador {
 
     ControladorPrincipal instancia = ControladorPrincipal.getInstance();
 

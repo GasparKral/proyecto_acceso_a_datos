@@ -178,7 +178,7 @@ public class PantallaPrincipalControlador {
         try {
             // Cambiar a la escena de búsqueda por campos
             PuntoEntrada.cambiarEscenaA("busquedaPorCampos", new BusquedasControlador(),
-                    new SceneOptions(null, null, true, false));
+                    new SceneOptions(null, null, true, true));
         } catch (Exception e) {
             // Mostrar el error
             e.printStackTrace();
@@ -229,7 +229,7 @@ public class PantallaPrincipalControlador {
         try {
             // Cambiar a la escena de búsqueda por campos
             PuntoEntrada.cambiarEscenaA("busquedaPorCampos", new BusquedasControlador(),
-                    new SceneOptions(null, null, true, false));
+                    new SceneOptions(null, null, true, true));
         } catch (Exception e) {
             // Mostrar el error si ocurre una excepción al cambiar la escena
             e.printStackTrace();

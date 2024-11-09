@@ -10,14 +10,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
-public class altaUsuarioControlador {
-	ZoneId defaultZoneId = ZoneId.systemDefault();
-
+public class AltaUsuarioControlador {
+    ZoneId defaultZoneId = ZoneId.systemDefault();
 
     @FXML
-    TextField tFApellido,tFDirector, tFSalario,tFOficio,tFComision,tFDepartamento;
+    TextField tFApellido, tFDirector, tFSalario, tFOficio, tFComision, tFDepartamento;
     @FXML
     DatePicker dPFecha;
     @FXML
@@ -27,14 +25,18 @@ public class altaUsuarioControlador {
         mensajeCamposVacios.setVisible(false);
     }
 
-
     public void nuevoUsuarioOnAction(ActionEvent actionEvent) {
-        if (tFApellido.getText().isEmpty() || tFDirector.getText().isEmpty() || tFSalario.getText().isEmpty() || tFOficio.getText().isEmpty() || tFComision.getText().isEmpty() || tFDepartamento.getText().isEmpty()) {
+        if (tFApellido.getText().isEmpty() || tFDirector.getText().isEmpty() || tFSalario.getText().isEmpty()
+                || tFOficio.getText().isEmpty() || tFComision.getText().isEmpty()
+                || tFDepartamento.getText().isEmpty()) {
             mensajeCamposVacios.setVisible(true);
         } else {
             try {
                 Date date = Date.from(dPFecha.getValue().atStartOfDay(defaultZoneId).toInstant());
-                ControladorPrincipal.getInstance().controladorEmpleados.crearEmpleado(tFApellido.getText(), Integer.parseInt(tFDirector.getText()), Double.parseDouble(tFSalario.getText()), tFOficio.getText(), date, Double.parseDouble(tFComision.getText()), Integer.parseInt(tFDepartamento.getText()));
+                ControladorPrincipal.getInstance().controladorEmpleados.crearEmpleado(tFApellido.getText(),
+                        Integer.parseInt(tFDirector.getText()), Double.parseDouble(tFSalario.getText()),
+                        tFOficio.getText(), date, Double.parseDouble(tFComision.getText()),
+                        Integer.parseInt(tFDepartamento.getText()));
                 mensajeCamposVacios.setVisible(false);
             } catch (Exception e) {
                 e = new Exception("Ocurrio un error al cargar guardar el departamento.");

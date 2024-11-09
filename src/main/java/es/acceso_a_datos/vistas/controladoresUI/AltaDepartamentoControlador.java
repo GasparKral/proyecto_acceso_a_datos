@@ -6,25 +6,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
-public class altaDepartamentoControlador {
+public class AltaDepartamentoControlador {
     @FXML
     Label mensajeCamposVacios;
     @FXML
     TextField tFLocalizacion, tFNombre;
 
-    public void initialize(){
+    public void initialize() {
         mensajeCamposVacios.setVisible(false);
     }
-
 
     public void nuevoDepartamentoOnAction(ActionEvent actionEvent) {
         if (tFLocalizacion.getText().isEmpty() || tFNombre.getText().isEmpty()) {
             mensajeCamposVacios.setVisible(true);
         } else {
             try {
-                ControladorPrincipal.getInstance().controladorDepartamentos.crearDepartamento(tFNombre.getText(), tFLocalizacion.getText());;
+                ControladorPrincipal.getInstance().controladorDepartamentos.crearDepartamento(tFNombre.getText(),
+                        tFLocalizacion.getText());
+                ;
                 mensajeCamposVacios.setVisible(false);
             } catch (Exception e) {
                 e = new Exception("Ocurrio un error al cargar guardar el departamento.");
