@@ -5,6 +5,7 @@ module es.acceso_a_datos {
     requires xstream;
     requires junit;
     requires javafx.graphics;
+    requires javafx.base;
 
     opens es.acceso_a_datos to javafx.fxml, xstream;
     opens es.acceso_a_datos.modelos to javafx.fxml, xstream;
