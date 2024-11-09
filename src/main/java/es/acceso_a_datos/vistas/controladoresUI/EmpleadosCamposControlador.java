@@ -9,7 +9,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
-public class EmpleadosCamposControlador {
+public class empleadosCamposControlador {
 
         ControladorPrincipal instancia = ControladorPrincipal.getInstance();
 

@@ -2,6 +2,7 @@ package es.acceso_a_datos.vistas.controladoresUI;
 
 
 import es.acceso_a_datos.PuntoEntrada;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -9,52 +10,9 @@ import javafx.scene.input.MouseEvent;
 public class menuControlador {
 
     @FXML
-    private Button bAlta;
+    Button bAlta,bBaja,bBuscar,bListar,bModificar,bSalir;
 
-    @FXML
-    private Button bBaja;
-
-    @FXML
-    private Button bBuscar;
-
-    @FXML
-    private Button bListar;
-
-    @FXML
-    private Button bModificar;
-
-    @FXML
-    private Button bSalir;
-
-    @FXML
-    void altaUsuario(MouseEvent event) {
-        try {
-            if (inicioControlador.esEmpleado) {
-                PuntoEntrada.cambiarEscenaA("altaEmpleado");
-            } else {
-                PuntoEntrada.cambiarEscenaA("altaDepartamento");
-            }
-        } catch (Exception e) {
-            e = new Exception("Ocurrio un error al cargar la ventana de alta de usuario.");
-        }
-    }
-
-    @FXML
-    void bajaUsuario(MouseEvent event) {
-        try {
-            if (inicioControlador.esEmpleado) {
-                PuntoEntrada.cambiarEscenaA("bajaEmpleado");
-            } else {
-                PuntoEntrada.cambiarEscenaA("bajaDepartamento");
-            }
-        } catch (Exception e) {
-            e = new Exception("Ocurrio un error al cargar la ventana de baja de usuario.");
-        }
-
-    }
-
-    @FXML
-    void buscarUnUsuario(MouseEvent event) {
+    public void bBuscarOnAction(ActionEvent actionEvent) {
         try {
             if (inicioControlador.esEmpleado) {
                 PuntoEntrada.cambiarEscenaA("buscarEmpleado");
@@ -66,21 +24,7 @@ public class menuControlador {
         }
     }
 
-    @FXML
-    void listarUsuarios(MouseEvent event) {
-        try {
-            if (inicioControlador.esEmpleado) {
-                PuntoEntrada.cambiarEscenaA("listadoEmpleado");
-            } else {
-                PuntoEntrada.cambiarEscenaA("listadoDepartamento");
-            }
-        } catch (Exception e) {
-            e = new Exception("Ocurrio un error al cargar el listado de usuarios.");
-        }
-    }
-
-    @FXML
-    void modificarUsuario(MouseEvent event) {
+    public void bModificarOnAction(ActionEvent actionEvent) {
         try {
             if (inicioControlador.esEmpleado) {
                 PuntoEntrada.cambiarEscenaA("modificarEmpleado");
@@ -92,13 +36,47 @@ public class menuControlador {
         }
     }
 
-    @FXML
-    void salirAlInicio(MouseEvent event) {
+    public void bAltaOnAction(ActionEvent actionEvent) {
+        try {
+            if (inicioControlador.esEmpleado) {
+                PuntoEntrada.cambiarEscenaA("altaEmpleado");
+            } else {
+                PuntoEntrada.cambiarEscenaA("altaDepartamento");
+            }
+        } catch (Exception e) {
+            e = new Exception("Ocurrio un error al cargar la ventana de alta de usuario.");
+        }
+    }
+
+    public void bBajaOnAction(ActionEvent actionEvent) {
+        try {
+            if (inicioControlador.esEmpleado) {
+                PuntoEntrada.cambiarEscenaA("bajaEmpleado");
+            } else {
+                PuntoEntrada.cambiarEscenaA("bajaDepartamento");
+            }
+        } catch (Exception e) {
+            e = new Exception("Ocurrio un error al cargar la ventana de baja de usuario.");
+        }
+    }
+
+    public void bListarOnAction(ActionEvent actionEvent) {
+        try {
+            if (inicioControlador.esEmpleado) {
+                PuntoEntrada.cambiarEscenaA("listadoEmpleado");
+            } else {
+                PuntoEntrada.cambiarEscenaA("listadoDepartamento");
+            }
+        } catch (Exception e) {
+            e = new Exception("Ocurrio un error al cargar el listado de usuarios.");
+        }
+    }
+
+    public void bSalirOnAction(ActionEvent actionEvent) {
         try {
             PuntoEntrada.cambiarEscenaA("Inicio");
         } catch (Exception e) {
             e = new Exception("Ocurrio un error al cargar la ventana de inicio.");
         }
     }
-
 }

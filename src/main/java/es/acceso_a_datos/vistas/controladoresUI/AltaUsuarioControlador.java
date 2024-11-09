@@ -5,13 +5,14 @@ import java.util.Date;
 
 import es.acceso_a_datos.PuntoEntrada;
 import es.acceso_a_datos.controladores.ControladorPrincipal;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class AltaUsuarioControlador {
+public class altaUsuarioControlador {
 	ZoneId defaultZoneId = ZoneId.systemDefault();
 
 
@@ -26,13 +27,13 @@ public class AltaUsuarioControlador {
         mensajeCamposVacios.setVisible(false);
     }
 
-    @FXML
-    void guardarEmpleado(MouseEvent event) {
+
+    public void nuevoUsuarioOnAction(ActionEvent actionEvent) {
         if (tFApellido.getText().isEmpty() || tFDirector.getText().isEmpty() || tFSalario.getText().isEmpty() || tFOficio.getText().isEmpty() || tFComision.getText().isEmpty() || tFDepartamento.getText().isEmpty()) {
             mensajeCamposVacios.setVisible(true);
         } else {
             try {
-            Date date = Date.from(dPFecha.getValue().atStartOfDay(defaultZoneId).toInstant());
+                Date date = Date.from(dPFecha.getValue().atStartOfDay(defaultZoneId).toInstant());
                 ControladorPrincipal.getInstance().controladorEmpleados.crearEmpleado(tFApellido.getText(), Integer.parseInt(tFDirector.getText()), Double.parseDouble(tFSalario.getText()), tFOficio.getText(), date, Double.parseDouble(tFComision.getText()), Integer.parseInt(tFDepartamento.getText()));
                 mensajeCamposVacios.setVisible(false);
             } catch (Exception e) {
@@ -44,7 +45,7 @@ public class AltaUsuarioControlador {
             } catch (Exception e) {
                 e = new Exception("Ocurrio un error al cargar la ventana de menu de departamento.");
             }
-            
+
         }
     }
 }
