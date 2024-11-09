@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 
 import java.util.Date;
 
-public class bajaDepartamentoControlador {
+public class BajaDepartamentoControlador {
     @FXML
     TextField tFId;
     @FXML

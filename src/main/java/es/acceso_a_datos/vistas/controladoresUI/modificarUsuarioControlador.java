@@ -6,7 +6,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class modificarUsuarioControlador {
+public class ModificarUsuarioControlador {
 
     @FXML
     TextField tFApellido,tFDirector,tFSalario,tFOficio,tFComision,tFDepartamento;

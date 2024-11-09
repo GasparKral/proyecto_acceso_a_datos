@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class altaDepartamentoControlador {
+public class AltaDepartamentoControlador {
     @FXML
     Label mensajeCamposVacios;
     @FXML

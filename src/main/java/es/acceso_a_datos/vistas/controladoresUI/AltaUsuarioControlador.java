@@ -11,7 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class altaUsuarioControlador {
+public class AltaUsuarioControlador {
 	ZoneId defaultZoneId = ZoneId.systemDefault();
 
 
