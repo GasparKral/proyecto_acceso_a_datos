@@ -12,7 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class AltaUsuarioControlador {
-    ZoneId defaultZoneId = ZoneId.systemDefault();
+	ZoneId defaultZoneId = ZoneId.systemDefault();
+
 
     @FXML
     TextField tFApellido, tFDirector, tFSalario, tFOficio, tFComision, tFDepartamento;

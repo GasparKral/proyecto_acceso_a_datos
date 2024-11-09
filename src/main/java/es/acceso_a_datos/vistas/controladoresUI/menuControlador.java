@@ -7,14 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-public class menuControlador {
+public class MenuControlador {
 
     @FXML
     Button bAlta,bBaja,bBuscar,bListar,bModificar,bSalir;
 
     public void bBuscarOnAction(ActionEvent actionEvent) {
         try {
-            if (inicioControlador.esEmpleado) {
+            if (InicioControlador.esEmpleado) {
                 PuntoEntrada.cambiarEscenaA("buscarEmpleado");
             } else {
                 PuntoEntrada.cambiarEscenaA("buscarDepartamento");
@@ -26,7 +26,7 @@ public class menuControlador {
 
     public void bModificarOnAction(ActionEvent actionEvent) {
         try {
-            if (inicioControlador.esEmpleado) {
+            if (InicioControlador.esEmpleado) {
                 PuntoEntrada.cambiarEscenaA("modificarEmpleado");
             } else {
                 PuntoEntrada.cambiarEscenaA("modificarDepartamento");
@@ -38,7 +38,7 @@ public class menuControlador {
 
     public void bAltaOnAction(ActionEvent actionEvent) {
         try {
-            if (inicioControlador.esEmpleado) {
+            if (InicioControlador.esEmpleado) {
                 PuntoEntrada.cambiarEscenaA("altaEmpleado");
             } else {
                 PuntoEntrada.cambiarEscenaA("altaDepartamento");
@@ -50,7 +50,7 @@ public class menuControlador {
 
     public void bBajaOnAction(ActionEvent actionEvent) {
         try {
-            if (inicioControlador.esEmpleado) {
+            if (InicioControlador.esEmpleado) {
                 PuntoEntrada.cambiarEscenaA("bajaEmpleado");
             } else {
                 PuntoEntrada.cambiarEscenaA("bajaDepartamento");
@@ -62,7 +62,7 @@ public class menuControlador {
 
     public void bListarOnAction(ActionEvent actionEvent) {
         try {
-            if (inicioControlador.esEmpleado) {
+            if (InicioControlador.esEmpleado) {
                 PuntoEntrada.cambiarEscenaA("listadoEmpleado");
             } else {
                 PuntoEntrada.cambiarEscenaA("listadoDepartamento");
