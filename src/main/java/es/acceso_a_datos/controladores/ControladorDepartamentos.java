@@ -95,5 +95,15 @@ public class ControladorDepartamentos {
                         }))
                 .collect(Collectors.toSet()));
     }
-
+     // Método para eliminar un departamento por su ID
+     public void eliminarDepartamento(int id) throws Exception {
+        Departamento departamentoAEliminar = departamentos.stream()
+                .filter(dep -> dep.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new Exception("No se encontró el departamento con ID: " + id));
+                
+        if (!departamentos.remove(departamentoAEliminar)) {
+            throw new Exception("No se pudo eliminar el departamento");
+        }
+    }
 }
