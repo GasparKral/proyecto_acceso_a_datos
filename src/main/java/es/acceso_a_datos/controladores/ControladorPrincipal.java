@@ -197,17 +197,26 @@ public class ControladorPrincipal {
         this.editandoEmpeados = false;
     }
 
+    /**
+     * Guarda los datos de los departamentos y empleados en archivos XML.
+     *
+     * @param rutaDepartamentos Ruta del archivo donde se guardarán los departamentos.
+     * @param rutaEmpleados     Ruta del archivo donde se guardarán los empleados.
+     */
     public void guardarXML(String rutaDepartamentos, String rutaEmpleados) {
         try {
-
+            // Omite el campo 'camposBuscados' de la serialización
             objetoXStream.omitField(ControladorEmpleados.class, "camposBuscados");
             objetoXStream.omitField(ControladorDepartamentos.class, "camposBuscados");
 
-            // Serializa los departamentos y empleados
+            // Serializa los departamentos y guarda en el archivo especificado
             objetoXStream.toXML(this.controladorDepartamentos, new FileOutputStream(rutaDepartamentos));
+            
+            // Serializa los empleados y guarda en el archivo especificado
             objetoXStream.toXML(this.controladorEmpleados, new FileOutputStream(rutaEmpleados));
 
         } catch (Exception e) {
+            // Imprime la traza de la excepción en caso de error
             e.printStackTrace();
         }
     }
