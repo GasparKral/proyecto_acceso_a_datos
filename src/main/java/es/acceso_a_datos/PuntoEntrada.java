@@ -2,7 +2,7 @@ package es.acceso_a_datos;
 
 import java.io.IOException;
 
-import es.acceso_a_datos.modelos.records.SceneOptions;
+import es.acceso_a_datos.modelos.records.OpcionesDeEscena;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -77,7 +77,7 @@ public class PuntoEntrada extends Application {
      * @param opcionesEscena las opciones de tamaño y posición de la escena.
      * @throws IOException si ocurre un error al cargar el archivo FXML.
      */
-    public static void cambiarEscenaA(String fxml, SceneOptions opcionesEscena) throws IOException {
+    public static void cambiarEscenaA(String fxml, OpcionesDeEscena opcionesEscena) throws IOException {
         FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource("frames/" + fxml + ".fxml"));
         Parent raiz = cargador.load();
 
@@ -122,7 +122,8 @@ public class PuntoEntrada extends Application {
      * @param opcionesEscena las opciones de tamaño y posición de la escena.
      * @throws IOException si ocurre un error al cargar el archivo FXML.
      */
-    public static void cambiarEscenaA(String fxml, Object controlador, SceneOptions opcionesEscena) throws IOException {
+    public static void cambiarEscenaA(String fxml, Object controlador, OpcionesDeEscena opcionesEscena)
+            throws IOException {
         FXMLLoader cargador = new FXMLLoader(PuntoEntrada.class.getResource("frames/" + fxml + ".fxml"));
         cargador.setController(controlador);
         Parent raiz = cargador.load();

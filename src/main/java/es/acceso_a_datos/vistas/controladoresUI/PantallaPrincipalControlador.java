@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 import es.acceso_a_datos.PuntoEntrada;
 import es.acceso_a_datos.controladores.ControladorPrincipal;
-import es.acceso_a_datos.modelos.records.SceneOptions;
+import es.acceso_a_datos.modelos.records.OpcionesDeEscena;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -179,7 +179,7 @@ public class PantallaPrincipalControlador {
         try {
             // Cambiar a la escena de búsqueda por campos
             PuntoEntrada.cambiarEscenaA("busquedaPorCampos", BusquedasControlador.getInstance(),
-                    new SceneOptions(null, null, true, true));
+                    new OpcionesDeEscena(null, null, true, true));
         } catch (Exception e) {
             // Mostrar el error
             e.printStackTrace();
@@ -231,7 +231,7 @@ public class PantallaPrincipalControlador {
         try {
             // Cambiar a la escena de búsqueda por campos
             PuntoEntrada.cambiarEscenaA("busquedaPorCampos", BusquedasControlador.getInstance(),
-                    new SceneOptions(null, null, true, true));
+                    new OpcionesDeEscena(null, null, true, true));
         } catch (Exception e) {
             // Mostrar el error si ocurre una excepción al cambiar la escena
             e.printStackTrace();
