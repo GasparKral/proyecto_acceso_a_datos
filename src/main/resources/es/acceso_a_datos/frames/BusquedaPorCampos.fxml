@@ -1,26 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox minWidth="750.0" spacing="20.0" stylesheets="@../css/general.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox minWidth="750.0" spacing="20.0" stylesheets="@../css/general.css"
+   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox fx:id="formulario" alignment="TOP_CENTER" maxHeight="275.0" maxWidth="1.7976931348623157E308" minHeight="50.0" VBox.vgrow="SOMETIMES">
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308"
+         maxWidth="1.7976931348623157E308" spacing="20.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#volver" text="Volver" />
+            <Button mnemonicParsing="false" onAction="#añadir" text="Añadir (+)" />
+         </children>
+      </HBox>
+      <HBox fx:id="formulario" alignment="TOP_CENTER" maxHeight="275.0"
+         maxWidth="1.7976931348623157E308" minHeight="50.0" VBox.vgrow="SOMETIMES">
          <VBox.margin>
             <Insets />
          </VBox.margin>
       </HBox>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="165.0" VBox.vgrow="ALWAYS">
-         <TilePane fx:id="cabecera" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="25.0" prefRows="1" prefTileHeight="1.0" prefTileWidth="0" style="-fx-background-color: #1976d2;" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+         minHeight="-Infinity" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0"
+         AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="165.0" VBox.vgrow="ALWAYS">
+         <TilePane fx:id="cabecera" alignment="CENTER" maxHeight="-Infinity"
+            maxWidth="1.7976931348623157E308" minHeight="25.0" prefRows="1" prefTileHeight="1.0"
+            prefTileWidth="0" style="-fx-background-color: #1976d2;" HBox.hgrow="ALWAYS"
+            VBox.vgrow="NEVER">
             <children>
 
             </children>
          </TilePane>
-         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="80.0" layoutY="185.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="185.0" prefWidth="630.0" style="-fx-border-color: #bbdefb;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="165.0" VBox.vgrow="ALWAYS">
+         <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="80.0"
+            layoutY="185.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+            prefHeight="185.0" prefWidth="630.0" style="-fx-border-color: #bbdefb;"
+            AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0"
+            AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="165.0" VBox.vgrow="ALWAYS">
             <content>
                <VBox fx:id="padre" alignment="TOP_CENTER" maxWidth="1.7976931348623157E308">
                   <children>

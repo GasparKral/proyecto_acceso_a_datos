@@ -244,4 +244,29 @@ public class BusquedasControlador {
 
     }
 
+    @FXML
+    public void volver() {
+
+        try {
+            PuntoEntrada.cambiarEscenaA("pantallaPrincipal");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    public void añadir() {
+
+        try {
+            if (controladorPrincipal.isEditandoEmpeados()) {
+                PuntoEntrada.cambiarEscenaA("altaEmpleado");
+            } else {
+                PuntoEntrada.cambiarEscenaA("altaDepartamento");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
