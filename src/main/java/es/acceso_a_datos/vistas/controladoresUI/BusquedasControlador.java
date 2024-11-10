@@ -110,7 +110,7 @@ public class BusquedasControlador {
                     new Label("Localización"));
 
             // Carga los departamentos por primera vez
-            for (Departamento departamento : controladorPrincipal.controladorDepartamentos.departamentos) {
+            for (Departamento departamento : controladorPrincipal.controladorDepartamentos.listarDepartamentos()) {
                 padre.getChildren().add(crearFilaDepartamento(departamento));
             }
 
@@ -227,7 +227,7 @@ public class BusquedasControlador {
         padre.getChildren().clear();
 
         // Carga los resultados de la búsqueda de departamentos
-        for (Departamento departamento : controladorPrincipal.controladorDepartamentos.buscDepartamentos()) {
+        for (Departamento departamento : controladorPrincipal.controladorDepartamentos.listarDepartamentos()) {
             padre.getChildren().add(crearFilaDepartamento(departamento));
         }
 
@@ -238,7 +238,7 @@ public class BusquedasControlador {
         padre.getChildren().clear();
 
         // Carga los resultados de la búsqueda de empleados
-        for (Empleado empleado : controladorPrincipal.controladorEmpleados.buscarEmpleados()) {
+        for (Empleado empleado : controladorPrincipal.controladorEmpleados.listarEmpleados()) {
             padre.getChildren().add(crearFilaEmpleado(empleado));
         }
 

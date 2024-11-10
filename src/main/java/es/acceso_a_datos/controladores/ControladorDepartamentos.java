@@ -110,4 +110,32 @@ public class ControladorDepartamentos {
             throw new Exception("No se pudo eliminar el departamento");
         }
     }
+
+    /**
+     * Comprueba si hay algún campo de búsqueda con un valor no nulo.
+     * 
+     * @return True si hay algún campo con valor no nulo, false en caso contrario.
+     */
+    public boolean algunCampoBuscado() {
+        return this.camposBuscados.entrySet().stream()
+                .anyMatch(entry -> entry.getValue() != null);
+    }
+
+    /**
+     * Devuelve un conjunto de departamentos que coinciden con los campos
+     * establecidos en la búsqueda.
+     * Si no hay campos buscados se devuelve el conjunto de todos los
+     * departamentos.
+     * 
+     * @return Un conjunto de departamentos que coinciden con los campos
+     *         establecidos.
+     */
+    public HashSet<Departamento> listarDepartamentos() {
+
+        if (algunCampoBuscado()) {
+            return this.buscDepartamentos();
+        }
+
+        return this.departamentos;
+    }
 }

@@ -165,8 +165,9 @@ public class PantallaPrincipalControlador {
             e.printStackTrace();
         }
 
-        // Inicializar el controlador principal con los streams
-        instancia.inicializar(departamentosStream, empleadosStream);
+        // Inicializar el controlador principal con los streams solo si están vacíos
+        if (instancia.controladorDepartamentos.departamentos.isEmpty())
+            instancia.inicializar(departamentosStream, empleadosStream);
         // Establecer el modo de edición de empleados
         instancia.editarEmpleados();
         // Cargar los campos de búsqueda en el controlador de empleados
@@ -216,8 +217,9 @@ public class PantallaPrincipalControlador {
             e.printStackTrace();
         }
 
-        // Inicializar el controlador principal con los streams
-        instancia.inicializar(departamentosStream, empleadosStream);
+        // Inicializar el controlador principal con los streams solo si están vacíos
+        if (instancia.controladorEmpleados.empleados.isEmpty())
+            instancia.inicializar(departamentosStream, empleadosStream);
         // Establecer el modo de edición de departamentos
         instancia.editarDepartamentos();
         // Cargar los campos de búsqueda en el controlador de empleados
