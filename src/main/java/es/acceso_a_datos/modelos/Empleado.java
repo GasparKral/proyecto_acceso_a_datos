@@ -1,6 +1,6 @@
 package es.acceso_a_datos.modelos;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Empleado {
@@ -28,7 +28,7 @@ public class Empleado {
     /**
      * Fecha de alta del empleado.
      */
-    private Date fecha_alta;
+    private LocalDate fecha_alta;
     /**
      * comisión del empleado, o null si no tiene.
      */
@@ -57,7 +57,7 @@ public class Empleado {
      * @param comision     Comisión del empleado, o null si no tiene.
      * @param departamento Identificador del departamento del empleado.
      */
-    public Empleado(int id, String apellido, double salario, String oficio, Date fecha_alta,
+    public Empleado(int id, String apellido, double salario, String oficio, LocalDate fecha_alta,
             Double comision, Integer departamento) {
         this.id = id;
         this.apellido = apellido;
@@ -80,7 +80,7 @@ public class Empleado {
      * @param comision     Comisión del empleado, o null si no tiene.
      * @param departamento Identificador del departamento del empleado.
      */
-    public Empleado(int id, String apellido, int director, double salario, String oficio, Date fecha_alta,
+    public Empleado(int id, String apellido, int director, double salario, String oficio, LocalDate fecha_alta,
             Double comision, Integer departamento) {
         this.id = id;
         this.apellido = apellido;
@@ -188,7 +188,7 @@ public class Empleado {
      * 
      * @return Fecha de alta del empleado.
      */
-    public Date getFecha_alta() {
+    public LocalDate getFecha_alta() {
         return fecha_alta;
     }
 
@@ -197,7 +197,7 @@ public class Empleado {
      * 
      * @param fecha_alta Fecha de alta del empleado.
      */
-    public void setFecha_alta(Date fecha_alta) {
+    public void setFecha_alta(LocalDate fecha_alta) {
         this.fecha_alta = fecha_alta;
     }
 

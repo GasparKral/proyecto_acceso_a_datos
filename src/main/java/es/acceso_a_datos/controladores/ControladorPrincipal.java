@@ -2,13 +2,12 @@ package es.acceso_a_datos.controladores;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.SingleValueConverter;
-import com.thoughtworks.xstream.converters.basic.DateConverter;
 
 import es.acceso_a_datos.modelos.Departamento;
 import es.acceso_a_datos.modelos.Empleado;
@@ -128,25 +127,28 @@ public class ControladorPrincipal {
                     return obj.toString();
                 }
             });
-            objetoXStream.registerConverter(new DateConverter() {
+            objetoXStream.registerConverter(new SingleValueConverter() {
                 @SuppressWarnings("rawtypes")
                 @Override
                 public boolean canConvert(Class type) {
-                    return type.equals(Date.class);
+                    return type.equals(LocalDate.class);
                 }
 
                 @Override
-                public Date fromString(String str) {
+                public Object fromString(String str) {
                     if (str == null || str.isEmpty()) {
                         return null;
                     }
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     try {
-                        return sdf.parse(str);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
+                        return LocalDate.parse(str, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    } catch (DateTimeParseException e) {
+                        return null;
                     }
-                    return null;
+                }
+
+                @Override
+                public String toString(Object obj) {
+                    return obj.toString();
                 }
             });
 

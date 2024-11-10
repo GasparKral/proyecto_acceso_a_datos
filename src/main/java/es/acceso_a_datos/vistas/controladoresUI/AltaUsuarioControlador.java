@@ -1,7 +1,6 @@
 package es.acceso_a_datos.vistas.controladoresUI;
 
 import java.time.ZoneId;
-import java.util.Date;
 
 import es.acceso_a_datos.PuntoEntrada;
 import es.acceso_a_datos.controladores.ControladorPrincipal;
@@ -12,8 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class AltaUsuarioControlador {
-	ZoneId defaultZoneId = ZoneId.systemDefault();
-
+    ZoneId defaultZoneId = ZoneId.systemDefault();
 
     @FXML
     TextField tFApellido, tFDirector, tFSalario, tFOficio, tFComision, tFDepartamento;
@@ -33,10 +31,10 @@ public class AltaUsuarioControlador {
             mensajeCamposVacios.setVisible(true);
         } else {
             try {
-                Date date = Date.from(dPFecha.getValue().atStartOfDay(defaultZoneId).toInstant());
+
                 ControladorPrincipal.getInstance().controladorEmpleados.crearEmpleado(tFApellido.getText(),
                         Integer.parseInt(tFDirector.getText()), Double.parseDouble(tFSalario.getText()),
-                        tFOficio.getText(), date, Double.parseDouble(tFComision.getText()),
+                        tFOficio.getText(), dPFecha.getValue(), Double.parseDouble(tFComision.getText()),
                         Integer.parseInt(tFDepartamento.getText()));
                 mensajeCamposVacios.setVisible(false);
             } catch (Exception e) {

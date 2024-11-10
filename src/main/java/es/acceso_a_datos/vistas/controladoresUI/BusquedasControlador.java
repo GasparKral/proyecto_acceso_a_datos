@@ -27,7 +27,7 @@ import javafx.util.Duration;
  */
 public class BusquedasControlador {
 
-    private final double ALTURA_MAXIMA_EDITOR_DE_CAMPOS = 125.0;
+    private final double ALTURA_MAXIMA_EDITOR_DE_CAMPOS = 100.0;
 
     private final ControladorPrincipal controladorPrincipal = ControladorPrincipal.getInstance();
 
@@ -152,16 +152,16 @@ public class BusquedasControlador {
             Timeline animacion = new Timeline();
             animacion.setOnFinished((a) -> {
                 // Cambia el estado del editor cuando la animación termina
-                editorDeCampos.estaAbierto = !editorDeCampos.estaAbierto;
+                editorDeCampos.estaAbierto.set(!editorDeCampos.estaAbierto.get());
             });
 
             // KeyFrame que define la duración, propiedades y valores finales de la
             // animación
             KeyFrame keyFrame = new KeyFrame(Duration.millis(300),
-                    new KeyValue(editorDeCampos.opacityProperty(), editorDeCampos.estaAbierto ? 0.0 : 1.0,
+                    new KeyValue(editorDeCampos.opacityProperty(), editorDeCampos.estaAbierto.get() ? 0.0 : 1.0,
                             Interpolator.EASE_BOTH),
                     new KeyValue(editorDeCampos.minHeightProperty(),
-                            editorDeCampos.estaAbierto ? 0.0 : ALTURA_MAXIMA_EDITOR_DE_CAMPOS,
+                            editorDeCampos.estaAbierto.get() ? 0.0 : ALTURA_MAXIMA_EDITOR_DE_CAMPOS,
                             Interpolator.EASE_BOTH));
 
             // Añade el KeyFrame a la animación y comienza la animación
@@ -188,16 +188,16 @@ public class BusquedasControlador {
             Timeline animacion = new Timeline();
             animacion.setOnFinished((a) -> {
                 // Cambia el estado del editor cuando la animación termina
-                editorDeCampos.estaAbierto = !editorDeCampos.estaAbierto;
+                editorDeCampos.estaAbierto.set(!editorDeCampos.estaAbierto.get());
             });
 
             // KeyFrame que define la duración, propiedades y valores finales de la
             // animación
             KeyFrame keyFrame = new KeyFrame(Duration.millis(300),
-                    new KeyValue(editorDeCampos.opacityProperty(), editorDeCampos.estaAbierto ? 0.0 : 1.0,
+                    new KeyValue(editorDeCampos.opacityProperty(), editorDeCampos.estaAbierto.get() ? 0.0 : 1.0,
                             Interpolator.EASE_BOTH),
                     new KeyValue(editorDeCampos.minHeightProperty(),
-                            editorDeCampos.estaAbierto ? 0.0 : ALTURA_MAXIMA_EDITOR_DE_CAMPOS,
+                            editorDeCampos.estaAbierto.get() ? 0.0 : ALTURA_MAXIMA_EDITOR_DE_CAMPOS,
                             Interpolator.EASE_BOTH));
 
             // Añade el KeyFrame a la animación y comienza la animación

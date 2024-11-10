@@ -1,10 +1,11 @@
 package es.acceso_a_datos.controladores;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
 import es.acceso_a_datos.modelos.Empleado;
 import javafx.beans.property.SimpleMapProperty;
 import javafx.collections.FXCollections;
@@ -140,7 +141,7 @@ public class ControladorEmpleados {
      * @param departamento El id del departamento del empleado.
      */
     public void modificarEmpleado(int idOriginal, String apellido, int director, double salario, String oficio,
-            Date fecha_alta, Double comision, Integer departamento) {
+            LocalDate fecha_alta, Double comision, Integer departamento) {
         Empleado empleadoOriginal = null; // Creamos una objeto empleado para buscar en la coleccion
         Empleado empleadoReemplazo = new Empleado(idOriginal, apellido, director, salario, oficio, fecha_alta, comision,
                 departamento); // Creamos al empleado que reemplazará al empleado original
@@ -169,7 +170,7 @@ public class ControladorEmpleados {
      * @param comision     La comision del empleado.
      * @param departamento El id del departamento del empleado.
      */
-    public void crearEmpleado(String apellido, int director, double salario, String oficio, Date fecha_alta,
+    public void crearEmpleado(String apellido, int director, double salario, String oficio, LocalDate fecha_alta,
             Double comision, Integer departamento) {
         int id = this.empleados.size() + 1; //
         Empleado empleado = new Empleado(id, apellido, director, salario, oficio, fecha_alta, comision, departamento);
