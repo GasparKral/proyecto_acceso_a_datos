@@ -80,7 +80,7 @@ public class Empleado {
      * @param comision     Comisión del empleado, o null si no tiene.
      * @param departamento Identificador del departamento del empleado.
      */
-    public Empleado(int id, String apellido, int director, double salario, String oficio, LocalDate fecha_alta,
+    public Empleado(int id, String apellido, Integer director, double salario, String oficio, LocalDate fecha_alta,
             Double comision, Integer departamento) {
         this.id = id;
         this.apellido = apellido;

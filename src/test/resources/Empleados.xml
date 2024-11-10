@@ -358,7 +358,7 @@
         <oficio>Programador</oficio>
         <fecha_alt>12/10/2020</fecha_alt>
         <comision xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
-        <dept_no>10</dept_no>
+        <dept_no></dept_no>
     </Empleado>
     <Empleado>
         <emp_no>2</emp_no>

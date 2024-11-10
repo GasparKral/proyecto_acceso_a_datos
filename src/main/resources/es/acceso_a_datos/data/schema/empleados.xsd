@@ -48,7 +48,7 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="dept_no" type="xs:positiveInteger" />
+                            <xs:element name="dept_no" nillable="true" type="xs:integer" />
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

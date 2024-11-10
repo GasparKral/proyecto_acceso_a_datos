@@ -13,13 +13,15 @@ public class ControladorDepartamentos {
 
     public HashSet<Departamento> departamentos = new HashSet<>();
 
-    // Definición de un enum para los campos de búsqueda, que utiliza métodos de referencia para obtener valores de campos de Departamento.
+    // Definición de un enum para los campos de búsqueda, que utiliza métodos de
+    // referencia para obtener valores de campos de Departamento.
     public enum CampoBusqueda {
         ID(Departamento::getId), NOMBRE(Departamento::getNombre), LOCALIZACION(Departamento::getLocalizacion);
 
         private final Function<Departamento, ?> getMethod;
 
-        // Constructor del enum que asigna la función de obtención de valor a cada campo.
+        // Constructor del enum que asigna la función de obtención de valor a cada
+        // campo.
         CampoBusqueda(Function<Departamento, ?> getMethod) {
             this.getMethod = getMethod;
         }
@@ -45,10 +47,12 @@ public class ControladorDepartamentos {
         this.camposBuscados.put(campo, valor);
     }
 
-    // Método para modificar un departamento existente, lanzando una excepción si no se encuentra.
-    public void modificarDepartamento(int id, String nombre, String localizacion) throws Exception {
+    // Método para modificar un departamento existente, lanzando una excepción si no
+    // se encuentra.
+    public void modificarDepartamento(int id, String nombre, String localizacion) {
         Departamento departamentoInicial = null; // Almacena el departamento a modificar si se encuentra.
-        Departamento departamentoRemplazo = new Departamento(id, nombre, localizacion); // Nuevo departamento con datos actualizados.
+        Departamento departamentoRemplazo = new Departamento(id, nombre, localizacion); // Nuevo departamento con datos
+                                                                                        // actualizados.
 
         // Bucle para buscar el departamento a modificar.
         for (Departamento dep : departamentos) {
@@ -57,12 +61,9 @@ public class ControladorDepartamentos {
             }
         }
 
-        // Si se encuentra el departamento, se reemplaza; si no, se lanza una excepción.
         if (departamentoInicial != null) {
             departamentos.remove(departamentoInicial);
             departamentos.add(departamentoRemplazo);
-        } else {
-            throw new Exception("No se ha podido modificar el departamento");
         }
     }
 
@@ -78,14 +79,16 @@ public class ControladorDepartamentos {
         }
     }
 
-    // Método para buscar departamentos que coincidan con los campos de búsqueda establecidos.
+    // Método para buscar departamentos que coincidan con los campos de búsqueda
+    // establecidos.
     public HashSet<Departamento> buscDepartamentos() {
         // Crea un mapa de los campos de búsqueda que tienen valores no nulos.
         HashMap<CampoBusqueda, String> campos = this.camposBuscados.entrySet().stream()
                 .filter(entry -> entry.getValue() != null)
                 .collect(HashMap::new, (map, entry) -> map.put(entry.getKey(), entry.getValue()), HashMap::putAll);
 
-        // Filtra y devuelve los departamentos que coinciden con los valores de búsqueda.
+        // Filtra y devuelve los departamentos que coinciden con los valores de
+        // búsqueda.
         return new HashSet<Departamento>(this.departamentos.stream()
                 .filter(departamento -> campos.entrySet().stream()
                         .allMatch(campo -> {
@@ -95,13 +98,14 @@ public class ControladorDepartamentos {
                         }))
                 .collect(Collectors.toSet()));
     }
-     // Método para eliminar un departamento por su ID
-     public void eliminarDepartamento(int id) throws Exception {
+
+    // Método para eliminar un departamento por su ID
+    public void eliminarDepartamento(int id) throws Exception {
         Departamento departamentoAEliminar = departamentos.stream()
                 .filter(dep -> dep.getId() == id)
                 .findFirst()
                 .orElseThrow(() -> new Exception("No se encontró el departamento con ID: " + id));
-                
+
         if (!departamentos.remove(departamentoAEliminar)) {
             throw new Exception("No se pudo eliminar el departamento");
         }

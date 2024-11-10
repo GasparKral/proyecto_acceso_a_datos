@@ -27,6 +27,18 @@ import javafx.util.Duration;
  */
 public class BusquedasControlador {
 
+    private static BusquedasControlador instance;
+
+    private BusquedasControlador() {
+    }
+
+    public static BusquedasControlador getInstance() {
+        if (instance == null) {
+            instance = new BusquedasControlador();
+        }
+        return instance;
+    }
+
     private final double ALTURA_MAXIMA_EDITOR_DE_CAMPOS = 100.0;
 
     private final ControladorPrincipal controladorPrincipal = ControladorPrincipal.getInstance();
@@ -142,7 +154,7 @@ public class BusquedasControlador {
         EditorDeCampos editorDeCampos = new EditorDeCampos(departamento);
 
         VBox fila = new VBox(
-                new ResultadosBusqueda(departamento.getCamposComoStrings()), editorDeCampos);
+                new ResultadosBusqueda(departamento.getCamposComoStrings(), departamento), editorDeCampos);
 
         fila.setOnMouseClicked(event -> {
             Timeline timeline = new Timeline();
@@ -178,7 +190,7 @@ public class BusquedasControlador {
         EditorDeCampos editorDeCampos = new EditorDeCampos(empleado);
 
         VBox fila = new VBox(
-                new ResultadosBusqueda(empleado.getCamposComoStrings()), editorDeCampos);
+                new ResultadosBusqueda(empleado.getCamposComoStrings(), empleado), editorDeCampos);
 
         fila.setOnMouseClicked(event -> {
             Timeline timeline = new Timeline();
@@ -207,5 +219,29 @@ public class BusquedasControlador {
         });
 
         return fila;
+
     }
+
+    public void actualizarListaDepartamentos() {
+
+        padre.getChildren().clear();
+
+        // Carga los resultados de la búsqueda de departamentos
+        for (Departamento departamento : controladorPrincipal.controladorDepartamentos.buscDepartamentos()) {
+            padre.getChildren().add(crearFilaDepartamento(departamento));
+        }
+
+    }
+
+    public void actualizarListaEmpleados() {
+
+        padre.getChildren().clear();
+
+        // Carga los resultados de la búsqueda de empleados
+        for (Empleado empleado : controladorPrincipal.controladorEmpleados.buscarEmpleados()) {
+            padre.getChildren().add(crearFilaEmpleado(empleado));
+        }
+
+    }
+
 }

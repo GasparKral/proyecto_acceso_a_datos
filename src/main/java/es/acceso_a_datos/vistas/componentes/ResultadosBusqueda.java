@@ -3,6 +3,7 @@ package es.acceso_a_datos.vistas.componentes;
 import java.util.List;
 
 import es.acceso_a_datos.PuntoEntrada;
+import es.acceso_a_datos.modelos.Empleado;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -16,7 +17,7 @@ public class ResultadosBusqueda extends HBox {
      * 
      * @param campos
      */
-    public ResultadosBusqueda(List<String> campos) {
+    public ResultadosBusqueda(List<String> campos, Object elemento) {
 
         super();
 
@@ -30,7 +31,7 @@ public class ResultadosBusqueda extends HBox {
         this.setAlignment(javafx.geometry.Pos.CENTER);
         this.setSpacing(0);
 
-        aplicarEstilos(PuntoEntrada.escenario.getWidth());
+        aplicarEstilos(PuntoEntrada.escenario.getWidth(), elemento);
 
         // Se define el estilo para cuando se pasa el ratón por encima
         this.hoverProperty().addListener((obs, oldVal, newVal) -> {
@@ -43,12 +44,12 @@ public class ResultadosBusqueda extends HBox {
 
         // Se ajusta el ancho de las columnas según el ancho de la escena
         PuntoEntrada.escenario.widthProperty().addListener((obs, oldVal, newVal) -> {
-            aplicarEstilos(newVal.doubleValue());
+            aplicarEstilos(newVal.doubleValue(), elemento);
         });
 
     };
 
-    private void aplicarEstilos(Double ancho) {
+    private void aplicarEstilos(Double ancho, Object elemento) {
         for (Node columna : this.getChildren()) {
             // Se ajusta el ancho y el padding de las columnas
             ((VBox) columna).setAlignment(javafx.geometry.Pos.CENTER);
@@ -58,6 +59,13 @@ public class ResultadosBusqueda extends HBox {
                             + "-fx-background-color: transparent; ");
             ((VBox) columna).setPrefWidth(
                     ((ancho - 100) / this.getChildren().size()));
+            if (elemento instanceof Empleado) {
+                if (((Empleado) elemento).getDepartamento() == null) {
+                    ((VBox) columna).setStyle(
+                            "-fx-border-color: black; -fx-border-width: 0 0 1 0; "
+                                    + "-fx-background-color: #ffcc80; ");
+                }
+            }
         }
     }
 

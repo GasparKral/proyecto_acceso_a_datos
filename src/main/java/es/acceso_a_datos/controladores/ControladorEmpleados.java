@@ -140,7 +140,7 @@ public class ControladorEmpleados {
      * @param comision     La comision del empleado.
      * @param departamento El id del departamento del empleado.
      */
-    public void modificarEmpleado(int idOriginal, String apellido, int director, double salario, String oficio,
+    public void modificarEmpleado(int idOriginal, String apellido, Integer director, double salario, String oficio,
             LocalDate fecha_alta, Double comision, Integer departamento) {
         Empleado empleadoOriginal = null; // Creamos una objeto empleado para buscar en la coleccion
         Empleado empleadoReemplazo = new Empleado(idOriginal, apellido, director, salario, oficio, fecha_alta, comision,
