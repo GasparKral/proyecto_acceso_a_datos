@@ -5,7 +5,6 @@ import es.acceso_a_datos.PuntoEntrada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 
 public class MenuControlador {
 

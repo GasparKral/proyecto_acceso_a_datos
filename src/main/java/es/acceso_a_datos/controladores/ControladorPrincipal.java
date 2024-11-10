@@ -7,11 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.converters.ConversionException;
 import com.thoughtworks.xstream.converters.SingleValueConverter;
 import com.thoughtworks.xstream.converters.basic.DateConverter;
 
-import es.acceso_a_datos.modelos.DatosCacheados;
 import es.acceso_a_datos.modelos.Departamento;
 import es.acceso_a_datos.modelos.Empleado;
 
@@ -91,6 +89,7 @@ public class ControladorPrincipal {
 
             // Convertidores de tipo
             objetoXStream.registerConverter(new SingleValueConverter() {
+                @SuppressWarnings("rawtypes")
                 @Override
                 public boolean canConvert(Class type) {
                     return type.equals(Integer.class);
@@ -110,7 +109,7 @@ public class ControladorPrincipal {
                 }
             });
             objetoXStream.registerConverter(new SingleValueConverter() {
-
+                @SuppressWarnings("rawtypes")
                 @Override
                 public boolean canConvert(Class type) {
                     return type.equals(Double.class);
@@ -130,7 +129,7 @@ public class ControladorPrincipal {
                 }
             });
             objetoXStream.registerConverter(new DateConverter() {
-
+                @SuppressWarnings("rawtypes")
                 @Override
                 public boolean canConvert(Class type) {
                     return type.equals(Date.class);
@@ -200,7 +199,8 @@ public class ControladorPrincipal {
     /**
      * Guarda los datos de los departamentos y empleados en archivos XML.
      *
-     * @param rutaDepartamentos Ruta del archivo donde se guardarán los departamentos.
+     * @param rutaDepartamentos Ruta del archivo donde se guardarán los
+     *                          departamentos.
      * @param rutaEmpleados     Ruta del archivo donde se guardarán los empleados.
      */
     public void guardarXML(String rutaDepartamentos, String rutaEmpleados) {
@@ -211,7 +211,7 @@ public class ControladorPrincipal {
 
             // Serializa los departamentos y guarda en el archivo especificado
             objetoXStream.toXML(this.controladorDepartamentos, new FileOutputStream(rutaDepartamentos));
-            
+
             // Serializa los empleados y guarda en el archivo especificado
             objetoXStream.toXML(this.controladorEmpleados, new FileOutputStream(rutaEmpleados));
 
