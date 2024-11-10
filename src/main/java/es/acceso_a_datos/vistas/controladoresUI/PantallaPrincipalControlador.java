@@ -86,26 +86,12 @@ public class PantallaPrincipalControlador {
         // Crear un selector de archivos para los departamentos
         FileChooser selectorDepartamentosXML = new FileChooser();
 
-        // Si hay un archivo guardado en la cache, establecerlo como el valor
-        // predeterminado
-        if (instancia.controladorDatos.datosCacheados.containsKey("departamentosXML")) {
-            departamentosCampo.setText(instancia.controladorDatos.datosCacheados.getDato("departamentosXML"));
-            selectorDepartamentosXML.setInitialDirectory(new File(departamentosCampo.getText()));
-        }
-
         // Establecer el filtro de extensiones para que solo se muestren archivos xml
         selectorDepartamentosXML.selectedExtensionFilterProperty().setValue(
                 new FileChooser.ExtensionFilter("XML", "*.xml"));
 
         // Crear un selector de archivos para los empleados
         FileChooser selectorEmpleadosXML = new FileChooser();
-
-        // Si hay un archivo guardado en la cache, establecerlo como el valor
-        // predeterminado
-        if (instancia.controladorDatos.datosCacheados.containsKey("empleadosXML")) {
-            empleadoCampo.setText(instancia.controladorDatos.datosCacheados.getDato("empleadosXML"));
-            selectorEmpleadosXML.setInitialDirectory(new File(empleadoCampo.getText()));
-        }
 
         // Establecer el filtro de extensiones para que solo se muestren archivos xml
         selectorEmpleadosXML.selectedExtensionFilterProperty().setValue(
@@ -117,7 +103,7 @@ public class PantallaPrincipalControlador {
             File seleccionado = selectorDepartamentosXML.showOpenDialog(PuntoEntrada.escenario.getScene().getWindow());
             if (seleccionado != null) {
                 departamentosCampo.setText(seleccionado.getAbsolutePath());
-                instancia.controladorDatos.datosCacheados.addDato("departamentosXML", seleccionado.getAbsolutePath());
+
             }
         });
 
@@ -126,7 +112,7 @@ public class PantallaPrincipalControlador {
             File seleccionado = selectorEmpleadosXML.showOpenDialog(PuntoEntrada.escenario.getScene().getWindow());
             if (seleccionado != null) {
                 empleadoCampo.setText(seleccionado.getAbsolutePath());
-                instancia.controladorDatos.datosCacheados.addDato("empleadosXML", seleccionado.getAbsolutePath());
+
             }
         });
 

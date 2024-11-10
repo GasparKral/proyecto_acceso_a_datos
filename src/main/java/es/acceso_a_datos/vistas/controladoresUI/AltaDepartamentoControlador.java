@@ -1,7 +1,11 @@
 package es.acceso_a_datos.vistas.controladoresUI;
 
+import java.io.IOException;
+
 import es.acceso_a_datos.PuntoEntrada;
 import es.acceso_a_datos.controladores.ControladorPrincipal;
+import es.acceso_a_datos.modelos.records.OpcionesDeEscena;
+import es.acceso_a_datos.modelos.records.Par;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -30,11 +34,17 @@ public class AltaDepartamentoControlador {
                 e = new Exception("Ocurrio un error al cargar guardar el departamento.");
             }
 
-            try {
-                PuntoEntrada.cambiarEscenaA("menu");
-            } catch (Exception e) {
-                e = new Exception("Ocurrio un error al cargar la ventana de menu de departamento.");
-            }
+        }
+    }
+
+    @FXML
+    public void volver() {
+        try {
+            PuntoEntrada.cambiarEscenaA("busquedaPorCampos", BusquedasControlador.getInstance(),new OpcionesDeEscena(null,
+                    new Par<Integer, Integer>((int) PuntoEntrada.escenario.getX(), (int) PuntoEntrada.escenario.getY()),
+                    true, true));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

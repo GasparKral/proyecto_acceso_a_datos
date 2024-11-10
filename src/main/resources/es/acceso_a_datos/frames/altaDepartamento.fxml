@@ -10,23 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:controller="es.acceso_a_datos.vistas.controladoresUI.AltaDepartamentoControlador"
-   maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-   prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/general.css"
-   xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/general.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.acceso_a_datos.vistas.controladoresUI.AltaDepartamentoControlador">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
    <rowConstraints>
+      <RowConstraints />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="266.80000000000007" minHeight="10.0"
-         prefHeight="266.80000000000007" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="128.60001220703128" minHeight="0.0" prefHeight="0.0"
-         vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="266.80000000000007" minHeight="10.0" prefHeight="266.80000000000007" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="128.60001220703128" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
          <children>
             <Label text="Introduce los datos del nuevo departamento">
                <font>
@@ -35,16 +31,14 @@
             </Label>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2"
-         GridPane.rowIndex="1">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <children>
             <Label text="Introduzca el nombre de departamento">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="tFNombre" maxHeight="-Infinity" maxWidth="-Infinity"
-               style="-fx-background-radius: 50;">
+            <TextField fx:id="tFNombre" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-radius: 50;">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
@@ -54,20 +48,16 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="tFLocalizacion" maxHeight="-Infinity" maxWidth="-Infinity"
-               style="-fx-background-radius: 50;">
+            <TextField fx:id="tFLocalizacion" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-radius: 50;">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </TextField>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2"
-         GridPane.rowIndex="2">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
          <children>
-            <Button fx:id="nuevoDepartamento" contentDisplay="CENTER" defaultButton="true"
-               mnemonicParsing="false" onAction="#nuevoDepartamentoOnAction"
-               style="-fx-background-radius: 50;" text="Enviar" />
+            <Button fx:id="nuevoDepartamento" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#nuevoDepartamentoOnAction" style="-fx-background-radius: 50;" text="Enviar" />
             <Label fx:id="mensajeCamposVacios" text="No puede haber campos vacios" textFill="RED">
                <VBox.margin>
                   <Insets top="5.0" />
@@ -75,5 +65,6 @@
             </Label>
          </children>
       </VBox>
+      <Button mnemonicParsing="false" onAction="#volver" text="Volver" />
    </children>
 </GridPane>

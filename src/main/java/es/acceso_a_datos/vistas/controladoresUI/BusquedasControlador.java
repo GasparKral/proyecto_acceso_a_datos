@@ -7,7 +7,7 @@ import es.acceso_a_datos.controladores.ControladorPrincipal;
 import es.acceso_a_datos.modelos.Departamento;
 import es.acceso_a_datos.modelos.Empleado;
 import es.acceso_a_datos.modelos.records.OpcionesDeEscena;
-import es.acceso_a_datos.modelos.records.Pair;
+import es.acceso_a_datos.modelos.records.Par;
 import es.acceso_a_datos.vistas.componentes.EditorDeCampos;
 import es.acceso_a_datos.vistas.componentes.ResultadosBusqueda;
 import javafx.animation.Interpolator;
@@ -251,7 +251,7 @@ public class BusquedasControlador {
 
         try {
             PuntoEntrada.cambiarEscenaA("pantallaPrincipal",
-                    new OpcionesDeEscena(null, new Pair<Integer, Integer>((int) PuntoEntrada.escenario.getX(),
+                    new OpcionesDeEscena(null, new Par<Integer, Integer>((int) PuntoEntrada.escenario.getX(),
                             (int) PuntoEntrada.escenario.getY()), false, true));
         } catch (IOException e) {
             e.printStackTrace();

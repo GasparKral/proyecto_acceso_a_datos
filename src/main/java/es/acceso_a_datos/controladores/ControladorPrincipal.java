@@ -64,11 +64,6 @@ public class ControladorPrincipal {
      */
     public ControladorEmpleados controladorEmpleados = new ControladorEmpleados();
 
-    /**
-     * Estructura para almacenar los datos cacheados de la aplicacion.
-     */
-    public ControladorDatos controladorDatos = new ControladorDatos();
-
     // #endregion
 
     // #region Metodos
