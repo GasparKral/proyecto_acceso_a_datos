@@ -50,21 +50,22 @@ public class ControladorDepartamentos {
     // Método para modificar un departamento existente, lanzando una excepción si no
     // se encuentra.
     public void modificarDepartamento(int id, String nombre, String localizacion) {
-        Departamento departamentoInicial = null; // Almacena el departamento a modificar si se encuentra.
-        Departamento departamentoRemplazo = new Departamento(id, nombre, localizacion); // Nuevo departamento con datos
-                                                                                        // actualizados.
 
-        // Bucle para buscar el departamento a modificar.
-        for (Departamento dep : departamentos) {
-            if (dep.getId() == id) {
-                departamentoInicial = dep;
-            }
-        }
+        // Nuevo departamento con datos actualizados.
+        Departamento departamentoRemplazo = new Departamento(id, nombre, localizacion);
 
-        if (departamentoInicial != null) {
-            departamentos.remove(departamentoInicial);
-            departamentos.add(departamentoRemplazo);
+        // Busca el departamento a remplazar.
+        Departamento departamentoOriginal = departamentos.stream()
+                .filter(dep -> dep.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No se encontró el departamento con ID: " + id));
+
+        // Reemplaza el departamento.
+        if (!departamentos.remove(departamentoOriginal)) {
+            throw new RuntimeException("No se pudo modificar el departamento");
         }
+        departamentos.add(departamentoRemplazo);
+
     }
 
     // Método para crear un nuevo departamento, lanzando una excepción si falla.

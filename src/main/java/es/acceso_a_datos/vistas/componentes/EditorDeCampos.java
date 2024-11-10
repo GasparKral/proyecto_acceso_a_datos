@@ -1,7 +1,9 @@
 package es.acceso_a_datos.vistas.componentes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import es.acceso_a_datos.controladores.ControladorPrincipal;
 import es.acceso_a_datos.modelos.Departamento;
@@ -96,23 +98,44 @@ public class EditorDeCampos extends HBox {
             // Crea un empleado a partir del elemento
             Empleado empleado = (Empleado) elemento;
 
-            // Crea una lista de nodos para los campos del empleado
+            // Crea una lista para almacenar los campos del empleado
             List<Node> campos = new ArrayList<>();
 
+            // Crea un mapa para almacenar los campos del empleado
+            Map<String, Object> camposEmpleado = new HashMap<>();
+
             // Agrega los campos del empleado a la lista
-            campos.add(new VBox(new Label("Apellido"), new TextField(empleado.getApellido())));
-            campos.add(new VBox(new Label("Oficio"), new TextField(empleado.getOficio())));
-            campos.add(new VBox(new Label("Salario"), new Spinner<>(0, 100000, empleado.getSalario())));
-            campos.add(new VBox(new Label("Comision"),
-                    new Spinner<>(0, 10000, empleado.getComision() == null ? 0 : empleado.getComision())));
-            campos.add(new VBox(new Label("Departamento"),
-                    new Spinner<>(0, 100, empleado.getDepartamento() == null ? -1 : empleado.getDepartamento())));
-            campos.add(new VBox(new Label("Fecha de alta"), new DatePicker(empleado.getFecha_alta())));
+            TextField apellidoTextField = new TextField(empleado.getApellido());
+            campos.add(new VBox(new Label("Apellido"), apellidoTextField));
+            camposEmpleado.put("Apellido", apellidoTextField);
+
+            TextField oficioTextField = new TextField(empleado.getOficio());
+            campos.add(new VBox(new Label("Oficio"), oficioTextField));
+            camposEmpleado.put("Oficio", oficioTextField);
+
+            Spinner<Double> salarioSpinner = new Spinner<>(0, 100000, empleado.getSalario());
+            campos.add(new VBox(new Label("Salario"), salarioSpinner));
+            camposEmpleado.put("Salario", salarioSpinner);
+
+            Spinner<Double> comisionSpinner = new Spinner<>(0, 10000,
+                    empleado.getComision() == null ? 0 : empleado.getComision());
+            campos.add(new VBox(new Label("Comision"), comisionSpinner));
+            camposEmpleado.put("Comision", comisionSpinner);
+
+            Spinner<Integer> departamentoSpinner = new Spinner<>(0, 100,
+                    empleado.getDepartamento() == null ? -1 : empleado.getDepartamento());
+            campos.add(new VBox(new Label("Departamento"), departamentoSpinner));
+            camposEmpleado.put("Departamento", departamentoSpinner);
+
+            DatePicker fechaAltaDatePicker = new DatePicker(empleado.getFecha_alta());
+            campos.add(new VBox(new Label("Fecha de alta"), fechaAltaDatePicker));
+            camposEmpleado.put("Fecha de alta", fechaAltaDatePicker);
 
             // Verifica si el empleado tiene un director
             if (empleado.getDirector() != null) {
-                // Agrega el campo del director a la lista
-                campos.add(new VBox(new Label("Director"), new TextField(String.valueOf(empleado.getDirector()))));
+                TextField directorTextField = new TextField(String.valueOf(empleado.getDirector()));
+                campos.add(new VBox(new Label("Director"), directorTextField));
+                camposEmpleado.put("Director", directorTextField);
             }
 
             // Agrega los campos a el contenedor de campos
@@ -121,45 +144,29 @@ public class EditorDeCampos extends HBox {
             // Agrega un listener para el botón de guardar
             guardar.setOnAction(e -> {
                 // Recorre los campos y actualiza los valores del empleado
-                areaCampos.getChildren().forEach(c -> {
-                    if (c instanceof VBox) {
-                        ((VBox) c).getChildren().forEach(n -> {
-                            String label;
-                            Object valor;
-                            if (n instanceof Label) {
-                                label = ((Label) n).getText();
-                            } else {
-                                label = "";
-                            }
-                            if (n instanceof Spinner) {
-                                valor = ((Spinner) n).getValue();
-                            } else if (n instanceof TextField) {
-                                valor = ((TextField) n).getText();
-                            } else {
-                                valor = "";
-                            }
-                            // Actualiza los valores del empleado según el campo
-                            switch (label) {
-                                case "Apellido":
-                                    empleado.setApellido((String) valor);
-                                    break;
-                                case "Oficio":
-                                    empleado.setOficio((String) valor);
-                                    break;
-                                case "Salario":
-                                    empleado.setSalario(Double.parseDouble(valor.toString()));
-                                    break;
-                                case "Comision":
-                                    empleado.setComision(Double.parseDouble(valor.toString()));
-                                    break;
-                                case "Departamento":
-                                    empleado.setDepartamento(Integer.parseInt(valor.toString()));
-                                    break;
-                                case "Fecha de alta":
-                                    empleado.setFecha_alta(((DatePicker) n).getValue());
-                                    break;
-                            }
-                        });
+                camposEmpleado.forEach((label, campo) -> {
+                    switch (label) {
+                        case "Apellido":
+                            empleado.setApellido(((TextField) campo).getText());
+                            break;
+                        case "Oficio":
+                            empleado.setOficio(((TextField) campo).getText());
+                            break;
+                        case "Salario":
+                            empleado.setSalario((double) ((Spinner) campo).getValue());
+                            break;
+                        case "Comision":
+                            empleado.setComision((Double) ((Spinner) campo).getValue());
+                            break;
+                        case "Departamento":
+                            empleado.setDepartamento((Integer) ((Spinner) campo).getValue());
+                            break;
+                        case "Fecha de alta":
+                            empleado.setFecha_alta(((DatePicker) campo).getValue());
+                            break;
+                        case "Director":
+                            empleado.setDirector(Integer.parseInt(((TextField) campo).getText()));
+                            break;
                     }
                 });
                 // Llama al método para modificar el empleado
@@ -173,6 +180,7 @@ public class EditorDeCampos extends HBox {
                         empleado.getComision(),
                         empleado.getDepartamento());
 
+                BusquedasControlador.getInstance().actualizarListaEmpleados();
             });
             // Agrega un listener para el botón de eliminar
             eliminar.setOnAction(e -> {
@@ -197,53 +205,42 @@ public class EditorDeCampos extends HBox {
 
             // Crea una lista de nodos para los campos del departamento
             List<Node> campos = new ArrayList<>();
+            // Crea un mapa para almacenar los TextField
+            Map<String, TextField> camposTextField = new HashMap<>();
 
             // Agrega los campos del departamento a la lista
-            campos.add(new HBox(new Label("Nombre"), new TextField(departamento.getNombre())));
-            campos.add(new HBox(new Label("Localizacion"), new TextField(departamento.getLocalizacion())));
+            TextField nombreTextField = new TextField(departamento.getNombre());
+            campos.add(new VBox(new Label("Nombre"), nombreTextField));
+            camposTextField.put("Nombre", nombreTextField);
+
+            TextField localizacionTextField = new TextField(departamento.getLocalizacion());
+            campos.add(new VBox(new Label("Localizacion"), localizacionTextField));
+            camposTextField.put("Localizacion", localizacionTextField);
 
             areaCampos.getChildren().addAll(campos);
 
             // Agrega un listener para el botón de guardar
 
-            guardar.setOnAction(e -> {
+            guardar.setOnAction(evento -> {
                 // Recorre los campos y actualiza los valores del departamento
-
-                areaCampos.getChildren().forEach(c -> {
-                    if (c instanceof HBox) {
-                        ((HBox) c).getChildren().forEach(n -> {
-                            String label;
-                            String texto;
-                            if (n instanceof Label) {
-                                label = ((Label) n).getText();
-                            } else {
-                                label = "";
-                            }
-                            if (n instanceof TextField) {
-                                texto = ((TextField) n).getText();
-                            } else {
-                                texto = "";
-                            }
-                            // Actualiza los valores del departamento según el campo
-
-                            switch (label) {
-                                case "Nombre":
-                                    departamento.setNombre(texto);
-                                    break;
-                                case "Localizacion":
-                                    departamento.setLocalizacion(texto);
-                                    break;
-                            }
-                        });
+                camposTextField.forEach((label, textField) -> {
+                    switch (label) {
+                        case "Nombre":
+                            departamento.setNombre(textField.getText());
+                            break;
+                        case "Localizacion":
+                            departamento.setLocalizacion(textField.getText());
+                            break;
                     }
                 });
-                // Llama al método para modificar el departamento
 
+                // Llama al método para modificar el departamento
                 instancia.controladorDepartamentos.modificarDepartamento(
                         departamento.getId(),
                         departamento.getNombre(),
                         departamento.getLocalizacion());
 
+                BusquedasControlador.getInstance().actualizarListaDepartamentos();
             });
             // Agrega un listener para el botón de eliminar
 
